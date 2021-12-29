@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E0B88A"
+    tools:context=".LoginActivity">
+    <LinearLayout
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="90dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="화이 도서관"
+            android:fontFamily="@font/nanum_style"
+            android:layout_marginTop="35dp"
+            android:textSize="30sp"
+            android:textColor="#777777" />
+        <ImageView
+            android:layout_margin="20dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:src="@drawable/book_icon"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Email"
+                android:layout_marginHorizontal="50dp"
+                android:fontFamily="@font/nanum_style"
+                android:layout_marginVertical="15dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Password"
+                android:fontFamily="@font/nanum_style"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginVertical="15dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="LogIn"
+            android:textColor="#000000"
+            android:background="@drawable/btn_blue"
+            android:textSize="25sp"
+            android:layout_marginHorizontal="50dp"
+            android:fontFamily="@font/nanum_style"
+            android:layout_marginTop="20dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Forgot Password?"
+                android:fontFamily="@font/nanum_style"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="65dp"
+                android:textColor="#999999"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Create Account?"
+                android:fontFamily="@font/nanum_style"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="65dp"
+                android:textColor="#5555ff"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
