@@ -10,7 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Library_App">
         <activity
-            android:name=".LoginActivity"
+            android:name=".CreateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GeneralLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Main_loginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
