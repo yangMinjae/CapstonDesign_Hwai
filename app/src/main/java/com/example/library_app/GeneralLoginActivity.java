@@ -9,6 +9,6 @@ public class GeneralLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.general_login);
+        setContentView(R.layout.general_login_main);
     }
 }

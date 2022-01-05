@@ -35,7 +35,7 @@ public class Main_loginActivity extends AppCompatActivity {
                 /*
                 서버로부터  if_admin 정보를 전달 받는 코드
                  */
-                if_admin=false; // 위의 " 서버로부터~~ 코드 를 임시로 다음과 같이 대체해 놓는다.
+                if_admin=true; // 위의 " 서버로부터~~ 코드 를 임시로 다음과 같이 대체해 놓는다.
                 Intent intent1 = new Intent(Main_loginActivity.this, GeneralLoginActivity.class);
                 Intent intent2 = new Intent(Main_loginActivity.this, AdminLoginActivity.class);
                 if(if_admin==true){
