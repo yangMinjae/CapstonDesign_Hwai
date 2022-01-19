@@ -9,14 +9,16 @@
     android:gravity="center"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:clickable="true"
+    android:id="@+id/header"
     >
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/text_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Item"
+        android:text="Select menu"
         android:fontFamily="@font/nanum_style"
-        android:textSize="50dp" />
+        android:textSize="40sp" />
 
 </LinearLayout>

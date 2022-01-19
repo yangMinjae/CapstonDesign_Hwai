@@ -19,13 +19,11 @@ public class AdminBookchangeActivity extends AppCompatActivity {
     private TextView category1; // 1층의 카테고리
     private TextView category2; // 2층의 카테고리
     private TextView category3; // 3층의 카테고리
-
-    // 카테고리 배열 string.xml에서 추가 및 삭제
-    final String[] categories = getResources().getStringArray(R.array.book_category);
-
+    
     // 카테고리 변경 버튼 클릭 이벤트 리스너
     class chgBtnListener implements View.OnClickListener {
-
+        // 카테고리 배열 string.xml에서 추가 및 삭제
+        final String[] categories=getResources().getStringArray(R.array.book_category);
         @Override
         public void onClick(View view) {
             // 대화 상자 생성
@@ -64,7 +62,6 @@ public class AdminBookchangeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_bookchange);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         btn_chg1 = findViewById(R.id.btn_chg1);
         btn_chg2 = findViewById(R.id.btn_chg2);
         btn_chg3 = findViewById(R.id.btn_chg3);

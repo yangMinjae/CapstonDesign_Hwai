@@ -23,5 +23,4 @@
         app:menu="@menu/admin_login_menu"
         app:headerLayout="@layout/admin_login_header"/>
 
-
 </androidx.drawerlayout.widget.DrawerLayout>

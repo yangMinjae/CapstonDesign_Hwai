@@ -4,10 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateAccountActivity">
+    tools:context=".CreateAccountActivity"
+    android:orientation="vertical"
+    android:background="@color/baseclor">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Account?"
-        android:textSize="30dp"/>
+        android:layout_margin="20dp"
+        android:fontFamily="@font/nanum_style"
+        android:gravity="center"
+        android:text="Create Accout"
+        android:textSize="50sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_margin="40dp"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이름:"
+                android:textSize="15sp"
+                android:layout_marginLeft="30dp"/>
+            <EditText
+                android:layout_marginLeft="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="40dp"
+                android:textSize="15sp"
+                android:maxLines="1"
+                android:id="@+id/submit_Name"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="생년월일:"
+                android:textSize="15sp"
+                android:layout_marginLeft="30dp"/>
+            <EditText
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:minWidth="40dp"
+                android:maxLines="1"
+                android:maxLength="6"
+                android:id="@+id/submit_DoB"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전화번호:"
+                android:textSize="15sp"
+                android:layout_marginLeft="30dp"/>
+            <EditText
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:minWidth="40dp"
+                android:maxLines="1"
+                android:maxLength="11"
+                android:id="@+id/submit_PhoneNum"
+                />
+        </LinearLayout>
+        <Button
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제출"
+            android:layout_margin="50dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btn_submit"
+            />
+
+    </LinearLayout>
 </LinearLayout>

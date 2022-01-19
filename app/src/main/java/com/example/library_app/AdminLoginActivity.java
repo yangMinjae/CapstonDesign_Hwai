@@ -13,10 +13,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -33,6 +36,7 @@ public class AdminLoginActivity extends AppCompatActivity {
         this.InitializeLayout();
         navigationView=findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId())
@@ -48,7 +52,6 @@ public class AdminLoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                 }
-
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
@@ -93,7 +96,8 @@ public class AdminLoginActivity extends AppCompatActivity {
 
         final EditText pin=(EditText) loginLayout.findViewById(R.id.Pin);
 
-        new AlertDialog.Builder(this).setView(loginLayout).setPositiveButton("OK",new DialogInterface.OnClickListener(){
+        AlertDialog.Builder dialog= new AlertDialog.Builder(this);
+        dialog.setView(loginLayout).setPositiveButton("OK",new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 String str1=pin.getText().toString();
@@ -103,6 +107,5 @@ public class AdminLoginActivity extends AppCompatActivity {
                 }
             }
         }).show();
-
     }
 }
