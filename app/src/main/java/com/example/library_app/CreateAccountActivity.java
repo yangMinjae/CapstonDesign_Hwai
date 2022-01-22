@@ -12,12 +12,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class CreateAccountActivity extends AppCompatActivity {
+
     private EditText submit_Name;       //이름
     private EditText submit_DoB;        //생년월일
     private EditText submit_PhoneNum;   //폰번호
+    private EditText submit_Email;      //Email
+    private EditText submit_PW;         //Password
+
     private String str1;                //이름
     private String str2;                //생년월일
     private String str3;                //폰번호
+    private String str4;                //Email
+    private String str5;                //Password
+
     private Button btn_submit;          //제출버튼
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,9 @@ public class CreateAccountActivity extends AppCompatActivity {
         submit_Name=findViewById(R.id.submit_Name);
         submit_DoB=findViewById(R.id.submit_DoB);
         submit_PhoneNum=findViewById(R.id.submit_PhoneNum);
+        submit_Email=findViewById(R.id.submit_Email);
+        submit_PW=findViewById(R.id.submit_PW);
+
         btn_submit=findViewById(R.id.btn_submit);
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
@@ -35,9 +45,10 @@ public class CreateAccountActivity extends AppCompatActivity {
             public void onClick(View view) {
                 str1=submit_Name.getText().toString();
                 str2=submit_DoB.getText().toString();
-                str3=submit_PhoneNum.getText().toString();  // 버튼 클릭시 Edittext의 text를 가져옴
-
-                if(str1.length()>=2 && str2.length()>=6 && str3.length()>=11){  // 각 Edittext가 일정 길이 이상 채워져 있을때만 제출 가능
+                str3=submit_PhoneNum.getText().toString();
+                str4=submit_Email.getText().toString();
+                str5=submit_PW.getText().toString();        // 버튼 클릭시 Edittext의 text를 가져옴
+                if(str1.length()>=2 && str2.length()>=6 && str3.length()>=11 && str4.length()>=10 && str5.length()>=7){  // 각 Edittext가 일정 길이 이상 채워져 있을때만 제출 가능
                     /*
                     서버에 사용자 정보 제출
                      */
@@ -47,7 +58,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"회원가입 정보를 제대로 입력해 주세요",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"회원가입 정보를 제대로 입력해 주세요.",Toast.LENGTH_LONG).show();
                 }
 
             }
