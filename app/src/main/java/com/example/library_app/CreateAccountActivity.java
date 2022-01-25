@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private EditText submit_PhoneNum;   //폰번호
     private EditText submit_Email;      //Email
     private EditText submit_PW;         //Password
+    private CheckBox checkbox_ifadmin;  //checkbox
 
     private String str1;                //이름
     private String str2;                //생년월일
@@ -38,6 +40,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         submit_Email=findViewById(R.id.submit_Email);
         submit_PW=findViewById(R.id.submit_PW);
 
+        checkbox_ifadmin=findViewById(R.id.checkbox_ifadmin);
+
         btn_submit=findViewById(R.id.btn_submit);
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
@@ -48,8 +52,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                 str3=submit_PhoneNum.getText().toString();
                 str4=submit_Email.getText().toString();
                 str5=submit_PW.getText().toString();        // 버튼 클릭시 Edittext의 text를 가져옴
-                if(str1.length()>=2 && str2.length()>=6 && str3.length()>=11 && str4.length()>=10 && str5.length()>=7){  // 각 Edittext가 일정 길이 이상 채워져 있을때만 제출 가능
+                if(str1.length()>=2 && str2.length()>=6 && str3.length()>=11 && str4.length()>=9 && str5.length()>=6){  // 각 Edittext가 일정 길이 이상 채워져 있을때만 제출 가능
                     /*
+                    서버:
                     서버에 사용자 정보 제출
                      */
 

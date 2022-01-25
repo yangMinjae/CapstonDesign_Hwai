@@ -35,7 +35,7 @@ public class GeneralLoginActivity extends AppCompatActivity {
                     case R.id.general_home:
                         Toast.makeText(getApplicationContext(), "현재 Home 화면입니다.", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.general_list:
+                    case R.id.general_Modi_user:
                         //showPinDialog();
                         break;
                     case R.id.logout:

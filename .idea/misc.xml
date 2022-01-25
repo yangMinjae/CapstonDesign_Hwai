@@ -3,20 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/admin_bookchange.xml" value="0.23052536231884058" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/admin_login_appbar.xml" value="0.23052536231884058" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/admin_login_header.xml" value="0.23052536231884058" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/admin_login_main.xml" value="0.23052536231884058" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/create_account.xml" value="0.23052536231884058" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/forgot_password.xml" value="0.23052536231884058" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/general_login_appbar.xml" value="0.2703804347826087" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/general_login_header.xml" value="0.2703804347826087" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/general_login_main.xml" value="0.23052536231884058" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/main_login.xml" value="0.5" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/pin.xml" value="0.23052536231884058" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/menu/admin_login_menu.xml" value="0.3614583333333333" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/menu/general_login_menu.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/btn_grey.xml" value="0.18518518518518517" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19814814814814816" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable/btn_blue.xml" value="0.10648148148148148" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable/btn_covalt.xml" value="0.10648148148148148" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable/btn_new.xml" value="0.10648148148148148" />
@@ -38,8 +26,10 @@
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/create_account.xml" value="0.25" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/example.xml" value="0.2672239108409321" />
-        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/forgot_password.xml" value="0.14893617021276595" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/forgot_password.xml" value="0.33" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/general_login.xml" value="0.15602836879432624" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/general_login_appbar.xml" value="0.3161231884057971" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/general_login_header.xml" value="0.3161231884057971" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/general_login_main.xml" value="0.2672239108409321" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/kain_login.xml" value="0.1524822695035461" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/main_login.xml" value="0.1524822695035461" />
@@ -47,6 +37,7 @@
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/pin.xml" value="0.2672239108409321" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/menu/admin_login_drawerlayout.xml" value="0.3685185185185185" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/menu/admin_login_menu.xml" value="0.3537037037037037" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/menu/general_login_menu.xml" value="0.4588541666666667" />
       </map>
     </option>
   </component>

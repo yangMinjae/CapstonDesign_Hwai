@@ -33,6 +33,12 @@ public class AdminLoginActivity extends AppCompatActivity {
         setContentView(R.layout.admin_login_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        /*
+        서버:
+        서버에서 pinnum정보를 가져와서
+        pinnum에 대입해준다.
+         */
+
         this.InitializeLayout();
         navigationView=findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
