@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Library_App">
         <activity
+            android:name=".ModifyPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".AdminBookchangeActivity"
             android:exported="false" />
         <activity

@@ -15,8 +15,8 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class Main_loginActivity extends AppCompatActivity {
-    private TextInputEditText email; // 로그인 화면에서 Email 입력하는 Edittext
-    private TextInputEditText pw; // 로그인 화면에서 Password 입력하는 Edittext
+    private TextInputEditText login_email; // 로그인 화면에서 Email 입력하는 Edittext
+    private TextInputEditText login_pw; // 로그인 화면에서 Password 입력하는 Edittext
     private Button btn_enter; // Login 버튼입니다.
     private TextView tv_forgotPassword; // Login 버튼 하단의 Forgot Password? Textview입니다.
     private TextView tv_createAccount;  // Login 버튼 하단의 createAccount? Textview입니다.
@@ -32,8 +32,8 @@ public class Main_loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        email=findViewById(R.id.email);
-        pw=findViewById(R.id.pw);
+        login_email=findViewById(R.id.login_email);
+        login_pw=findViewById(R.id.login_pw);
         btn_enter=findViewById(R.id.btn_enter);
         tv_forgotPassword=findViewById(R.id.tv_forgotPassword);
         tv_createAccount=findViewById(R.id.tv_createAccount);
@@ -48,7 +48,7 @@ public class Main_loginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent1 = new Intent(Main_loginActivity.this, GeneralLoginActivity.class);
                 Intent intent2 = new Intent(Main_loginActivity.this, AdminLoginActivity.class);
-                if(Cansubmit(email,pw)){    // email 또는 pw가 아무글자도 입력되지않았을때 토스트 메시지
+                if(Cansubmit(login_email,login_pw)){    // email 또는 pw가 아무글자도 입력되지않았을때 토스트 메시지
                     Toast.makeText(getApplicationContext(), "Email과 Password를 입력해 주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -61,8 +61,8 @@ public class Main_loginActivity extends AppCompatActivity {
                         }
                     }
                     else{
-                        email.setText("");
-                        pw.setText("");
+                        login_email.setText("");
+                        login_pw.setText("");
                         Toast.makeText(getApplicationContext(), "잘못된 회원정보 입니다.", Toast.LENGTH_SHORT).show();
                     }
                 }

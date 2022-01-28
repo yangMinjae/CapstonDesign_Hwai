@@ -36,11 +36,11 @@ public class GeneralLoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "현재 Home 화면입니다.", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.general_Modi_user:
-                        //showPinDialog();
+                        Intent intent1=new Intent(GeneralLoginActivity.this, ModifyPasswordActivity.class);
+                        startActivity(intent1);
                         break;
                     case R.id.logout:
-                        Intent intent=new Intent(GeneralLoginActivity.this, Main_loginActivity.class);
-                        startActivity(intent);
+                        finish();
                         break;
                 }
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);

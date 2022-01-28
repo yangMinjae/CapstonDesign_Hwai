@@ -23,8 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class AdminLoginActivity extends AppCompatActivity {
+
     private NavigationView navigationView;
     private String pinnum="123456";
     @Override
@@ -53,9 +55,12 @@ public class AdminLoginActivity extends AppCompatActivity {
                     case R.id.admin_change:
                         showPinDialog();
                         break;
+                    case R.id.admin_Modi_user:
+                        Intent intent1=new Intent(AdminLoginActivity.this, ModifyPasswordActivity.class);
+                        startActivity(intent1);
+                        break;
                     case R.id.logout:
-                        Intent intent=new Intent(AdminLoginActivity.this, Main_loginActivity.class);
-                        startActivity(intent);
+                        finish();
                         break;
                 }
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
