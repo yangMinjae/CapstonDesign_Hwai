@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="baseclor">#E0B88A</color>
+    <color name="grey">#777777</color>
+    <color name="chatting_roomCol">#9fbfd5</color>
+    <color name="not_over">#FF018786</color>
+    <color name="over">#ff2222</color>
 </resources>
