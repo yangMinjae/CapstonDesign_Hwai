@@ -8,7 +8,22 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/general_swipe_refresh"
+        >
+        <ListView
+            android:paddingTop="58dp"
+            android:transcriptMode="alwaysScroll"
+            android:id="@+id/general_listview_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:listSelector="@color/grey"
+            android:background="@color/chatting_roomCol"
+            >
+        </ListView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <include
         layout="@layout/general_login_appbar"
         android:layout_width="match_parent"

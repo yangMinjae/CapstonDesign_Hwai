@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/admin_login_main.xml" value="0.26721014492753625" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/item_of_listview.xml" value="0.26721014492753625" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/borderline.xml" value="0.15648148148148147" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/borderline_bottom.xml" value="0.15648148148148147" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/borderline_bottom_bold.xml" value="0.15648148148148147" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/borderline_bottom_right.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/btn_grey.xml" value="0.18518518518518517" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/btn_grey1.xml" value="0.15462962962962962" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19814814814814816" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable/btn_blue.xml" value="0.10648148148148148" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable/btn_covalt.xml" value="0.10648148148148148" />
@@ -21,6 +24,7 @@
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/activity_main.xml" value="0.2601317122593718" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/admin_bookchange.xml" value="0.2672239108409321" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/admin_change_bookloc.xml" value="0.2672239108409321" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/admin_item_of_listview.xml" value="0.33" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/admin_login.xml" value="0.15602836879432624" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/admin_login_appbar.xml" value="0.36886005560704355" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/admin_login_header.xml" value="0.24722222222222223" />
@@ -29,6 +33,7 @@
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/create_account.xml" value="0.25" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/example.xml" value="0.2672239108409321" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/forgot_password.xml" value="0.33" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/general_item_of_listview.xml" value="0.2341485507246377" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/general_login.xml" value="0.15602836879432624" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/general_login_appbar.xml" value="0.3161231884057971" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/general_login_header.xml" value="0.3161231884057971" />

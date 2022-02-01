@@ -11,5 +11,5 @@
     <color name="grey">#777777</color>
     <color name="chatting_roomCol">#9fbfd5</color>
     <color name="not_over">#FF018786</color>
-    <color name="over">#ff2222</color>
+    <color name="over">#880000</color>
 </resources>
