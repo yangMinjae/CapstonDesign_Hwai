@@ -21,6 +21,7 @@ import android.renderscript.ScriptGroup;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -35,7 +36,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class AdminLoginActivity extends AppCompatActivity {
 
     private NavigationView navigationView;
-    private String pinnum="123456";
+    private final String pinnum="123456";
 
     //private SwipeRefreshLayout swipe_refresh;
     private ListView listView;
@@ -56,8 +57,8 @@ public class AdminLoginActivity extends AppCompatActivity {
          */
 
         //swipe_refresh = findViewById(R.id.swipe_refresh);
-        scrollView = (NestedScrollView) findViewById(R.id.admin_scrollview_1);
-        listView = (ListView) findViewById(R.id.admin_listview_1);
+        scrollView = findViewById(R.id.admin_scrollview_1);
+        listView = findViewById(R.id.admin_listview_1);
         adapter = new ListViewAdapter(AdminLoginActivity.this);
         listView.setAdapter(adapter);
         adapter.additem("잭과 콩나무1", "2022-02-03", false);
@@ -99,6 +100,14 @@ public class AdminLoginActivity extends AppCompatActivity {
         서버에서 해당 사용자가 빌린 모든 책의 정보를
         adapter.additem(~~~~)해준다.
          */
+
+        listView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                scrollView.requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
 
 
         this.InitializeLayout();
@@ -144,8 +153,8 @@ public class AdminLoginActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_navigation_menu_icon);
         getSupportActionBar().setTitle("관리자 로그인 홈");
 
-        DrawerLayout drawLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        DrawerLayout drawLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -170,7 +179,7 @@ public class AdminLoginActivity extends AppCompatActivity {
         LayoutInflater vi=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout loginLayout=(LinearLayout) vi.inflate(R.layout.pin,null);
 
-        final EditText pin=(EditText) loginLayout.findViewById(R.id.Pin);
+        final EditText pin= loginLayout.findViewById(R.id.Pin);
 
         AlertDialog.Builder dialog= new AlertDialog.Builder(this);
         dialog.setView(loginLayout).setPositiveButton("OK",new DialogInterface.OnClickListener(){
