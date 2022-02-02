@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GeneralLoginActivity"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/general_drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -30,7 +30,7 @@
         android:layout_height="match_parent" />
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/general_nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

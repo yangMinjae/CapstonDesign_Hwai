@@ -16,9 +16,11 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -32,6 +34,7 @@ public class AdminLoginActivity extends AppCompatActivity {
     private ListView admin_listView1;
     private Admin_ListViewAdapter adapter;
 
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +94,17 @@ public class AdminLoginActivity extends AppCompatActivity {
 
 
         this.InitializeLayout();
-        navigationView=findViewById(R.id.nav_view);
+        /*
+        서버:
+        서버에서 사용자 이름을 받아온다.
+        username에 대입
+         */
+        username = "홍길동";
+        navigationView=(NavigationView) findViewById(R.id.admin_nav_view);
+        View headerview = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerview.findViewById(R.id.admin_text_header);
+        navUsername.setText(username+"님 환영합니다.");
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             @Override
@@ -112,14 +125,11 @@ public class AdminLoginActivity extends AppCompatActivity {
                         finish();
                         break;
                 }
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                DrawerLayout drawer = findViewById(R.id.admin_drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
-
-
-
 
 
     }
@@ -133,8 +143,8 @@ public class AdminLoginActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_navigation_menu_icon);
         getSupportActionBar().setTitle("관리자 로그인 홈");
 
-        DrawerLayout drawLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        DrawerLayout drawLayout = findViewById(R.id.admin_drawer_layout);
+        NavigationView navigationView = findViewById(R.id.admin_nav_view);
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -148,7 +158,7 @@ public class AdminLoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.admin_drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {

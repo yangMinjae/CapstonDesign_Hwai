@@ -12,7 +12,9 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -23,6 +25,7 @@ public class GeneralLoginActivity extends AppCompatActivity {
     private ListView general_listview_1;
     private SwipeRefreshLayout general_swipe_refresh;
     private General_ListViewAdapter adapter;
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +33,6 @@ public class GeneralLoginActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.InitializeLayout();
-        navigationView=findViewById(R.id.nav_view);
 
         general_listview_1=findViewById(R.id.general_listview_1);
         general_swipe_refresh=findViewById(R.id.general_swipe_refresh);
@@ -77,6 +79,16 @@ public class GeneralLoginActivity extends AppCompatActivity {
                 general_swipe_refresh.setRefreshing(false);
             }
         });
+        /*
+        서버:
+        서버에서 사용자 이름을 받아온다.
+        username에 대입
+         */
+        username = "김철수";
+        navigationView=(NavigationView) findViewById(R.id.general_nav_view);
+        View headerview = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerview.findViewById(R.id.general_text_header);
+        navUsername.setText(username+"님 환영합니다.");
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
@@ -95,7 +107,7 @@ public class GeneralLoginActivity extends AppCompatActivity {
                         finish();
                         break;
                 }
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                DrawerLayout drawer = findViewById(R.id.general_drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -117,8 +129,8 @@ public class GeneralLoginActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_navigation_menu_icon);
         getSupportActionBar().setTitle("이용자 로그인 홈");
 
-        DrawerLayout drawLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        DrawerLayout drawLayout = (DrawerLayout) findViewById(R.id.general_drawer_layout);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.general_nav_view);
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
