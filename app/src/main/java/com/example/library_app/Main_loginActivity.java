@@ -5,14 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.textfield.TextInputEditText;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 
 public class Main_loginActivity extends AppCompatActivity {
     private TextInputEditText login_email; // 로그인 화면에서 Email 입력하는 Edittext
@@ -24,34 +29,46 @@ public class Main_loginActivity extends AppCompatActivity {
                                         // admin이면 true, general_user면 false
     private Boolean if_member = true;  // 서버로부터 받아오는 회원인지 여부(잘못된 Email, password 면 로그인 서버는 false리턴)
 
-    // 위의 if_admin 부분을 로그인 시 스위치를 통해 사용자가 지정하도록 하는게 나을 것 같아서 아래와 같이 admin_status을 추가하였습니다.
-    private Switch admin_switch;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
         login_email=findViewById(R.id.login_email);
         login_pw=findViewById(R.id.login_pw);
         btn_enter=findViewById(R.id.btn_enter);
         tv_forgotPassword=findViewById(R.id.tv_forgotPassword);
         tv_createAccount=findViewById(R.id.tv_createAccount);
-        admin_switch=findViewById(R.id.admin_switch);
-        /*
-        서버:
-        if_admin값과, if_member값을 서버로 부터 받아온다.
-         */
+
 
         btn_enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent1 = new Intent(Main_loginActivity.this, GeneralLoginActivity.class);
                 Intent intent2 = new Intent(Main_loginActivity.this, AdminLoginActivity.class);
-                if(Cansubmit(login_email,login_pw)){    // email 또는 pw가 아무글자도 입력되지않았을때 토스트 메시지
+
+                String str1 = login_email.getText().toString();
+                String str2 = login_pw.getText().toString();
+
+                if(Cantsubmit(str1, str2)){    // email 또는 pw가 아무글자도 입력되지않았을때 토스트 메시지
                     Toast.makeText(getApplicationContext(), "Email과 Password를 입력해 주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else{
+
+//                    try{
+//                        HashMap<String, String> param = new HashMap<String, String>();
+//                        param.put("email",str1);
+//                        param.put("pw",str2);
+//                        ObjectMapper objectMapper = new ObjectMapper();
+//                        String json = objectMapper.writeValueAsString(param);
+//                        new ServerTask().execute(json);
+//                        Toast.makeText(getApplicationContext(), "서버전송 완료", Toast.LENGTH_SHORT).show();
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
+
                     if(if_member){
                         if (if_admin) {
                             startActivity(intent2);
@@ -69,17 +86,7 @@ public class Main_loginActivity extends AppCompatActivity {
 
             }
         });
-        admin_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b){
-                if (b){
-                    if_admin = true;
-                }
-                else {
-                    if_admin = false;
-                }
-            }
-        });
+
         tv_forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +103,7 @@ public class Main_loginActivity extends AppCompatActivity {
         });
 
     }
-    private Boolean Cansubmit(TextInputEditText email, TextInputEditText pw){   //email 또는 pw가 아무글자도 입력되지않았을때 true 리턴
-        return email.getText().toString().length()==0 || pw.getText().toString().length()==0;
+    private Boolean Cantsubmit(String email, String pw){   //email 또는 pw가 아무글자도 입력되지않았을때 true 리턴
+        return email.length()==0 || pw.length()==0;
     }
 }

@@ -40,7 +40,7 @@
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/general_login_main.xml" value="0.2672239108409321" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/item_of_listview.xml" value="0.27898550724637683" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/kain_login.xml" value="0.1524822695035461" />
-        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/main_login.xml" value="0.1524822695035461" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/main_login.xml" value="0.5" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/main_login1.xml" value="0.15602836879432624" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/modify_password.xml" value="0.5536458333333333" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/modify_user_info.xml" value="0.5536458333333333" />
@@ -48,6 +48,7 @@
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/menu/admin_login_drawerlayout.xml" value="0.3685185185185185" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/menu/admin_login_menu.xml" value="0.3537037037037037" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/menu/general_login_menu.xml" value="0.4588541666666667" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/xml/network_security_config.xml" value="0.19655797101449277" />
       </map>
     </option>
   </component>

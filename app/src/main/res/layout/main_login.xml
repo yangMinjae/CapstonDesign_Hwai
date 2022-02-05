@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/nanum_style"
             android:gravity="center"
             android:text="화이 도서관"
@@ -31,20 +31,19 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
             android:background="@null"
             android:src="@drawable/book_icon" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="50dp"
-                android:layout_marginVertical="15dp"
                 android:fontFamily="@font/nanum_style"
                 android:hint="Email" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -52,7 +51,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_pw"
                 android:layout_width="match_parent"
@@ -65,71 +63,57 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:orientation="horizontal">
-
-            <Switch
-                android:id="@+id/admin_switch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="45dp"
-                android:layout_marginTop="4dp"
-                android:checked="false"
-                android:fontFamily="@font/nanum_style"
-                android:padding="10dp"
-                android:text="관리자"
-                android:textColorHighlight="#009688"
-                android:textColorLink="#00BCD4" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/btn_enter"
-                android:layout_width="106dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_margin="4dp"
-                android:layout_marginHorizontal="50dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="50dp"
                 android:background="@drawable/btn_blue"
                 android:fontFamily="@font/nanum_style"
                 android:text="LogIn"
+                android:layout_gravity="center_horizontal"
                 android:textColor="#000000"
                 android:textSize="25sp" />
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:id="@+id/tv_forgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="15dp"
+                    android:fontFamily="@font/nanum_style"
+                    android:text="Forgot Password?"
+                    android:textColor="#999999"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/tv_createAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="15dp"
+                    android:fontFamily="@font/nanum_style"
+                    android:text="Create Account?"
+                    android:textColor="#5555ff"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tv_forgotPassword"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="40dp"
-                android:layout_marginBottom="65dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/nanum_style"
-                android:gravity="center"
-                android:text="Forgot Password?"
-                android:textColor="#999999"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/tv_createAccount"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="65dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/nanum_style"
-                android:gravity="center"
-                android:text="Create Account?"
-                android:textColor="#5555ff"
-                android:textSize="16sp" />
-
-
-        </LinearLayout>
 
     </LinearLayout>
 
