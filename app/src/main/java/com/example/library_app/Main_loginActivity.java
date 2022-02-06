@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,8 +12,6 @@ import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.textfield.TextInputEditText;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -28,6 +25,8 @@ public class Main_loginActivity extends AppCompatActivity {
     private Boolean if_admin = false;   // 로그인 버튼을 누른 후 서버로 부터 전달받게되는 admin/genereal_user여부
                                         // admin이면 true, general_user면 false
     private Boolean if_member = true;  // 서버로부터 받아오는 회원인지 여부(잘못된 Email, password 면 로그인 서버는 false리턴)
+
+    private String loginUrl="https://webhook.site/5c50bb61-e3f6-434d-9854-01f7a89f03bf";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +55,20 @@ public class Main_loginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Email과 Password를 입력해 주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    /*
+                    서버관련:
+                    서버에 id email 전송
+                    try{
 
-//                    try{
-//                        HashMap<String, String> param = new HashMap<String, String>();
-//                        param.put("email",str1);
-//                        param.put("pw",str2);
-//                        ObjectMapper objectMapper = new ObjectMapper();
-//                        String json = objectMapper.writeValueAsString(param);
-//                        new ServerTask().execute(json);
-//                        Toast.makeText(getApplicationContext(), "서버전송 완료", Toast.LENGTH_SHORT).show();
-//                    }catch (Exception e){
-//                        e.printStackTrace();
-//                    }
+                        String json = JsonString(str1, str2);
+                        new ServerTask_post(loginUrl).execute(json);
+                        Toast.makeText(getApplicationContext(), json, Toast.LENGTH_SHORT).show();
 
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                     */
                     if(if_member){
                         if (if_admin) {
                             startActivity(intent2);
@@ -105,5 +105,13 @@ public class Main_loginActivity extends AppCompatActivity {
     }
     private Boolean Cantsubmit(String email, String pw){   //email 또는 pw가 아무글자도 입력되지않았을때 true 리턴
         return email.length()==0 || pw.length()==0;
+    }
+    private String JsonString(String email, String pw) throws Exception{    // email과 pw를 jsonstring으로 변환하기위한 함수
+        HashMap<String, String> param = new HashMap<String, String>();
+        param.put("email",email);
+        param.put("pw",pw);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(param);
+        return json;
     }
 }

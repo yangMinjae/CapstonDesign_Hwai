@@ -1,0 +1,9 @@
+{
+  "name": "~~~~",
+  "birth": "~~~~",
+  "tel": "~~~~",
+  "email": "~~~~",
+  "pw": "~~~~",
+  "admin": "true/false",
+  (관리자면 true, 일반이용자는 false)
+}

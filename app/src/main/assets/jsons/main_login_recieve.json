@@ -1,0 +1,4 @@
+{
+  "succes": "true/false",
+  (로그인 성공시, true, 실패시 false)
+}
