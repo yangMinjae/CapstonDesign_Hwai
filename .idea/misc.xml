@@ -3,9 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/admin_bookchange.xml" value="0.26721014492753625" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/create_account.xml" value="0.26721014492753625" />
-        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/forgot_password.xml" value="0.33" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/borderline.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/borderline_bottom.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/borderline_bottom_bold.xml" value="0.15648148148148147" />
@@ -48,6 +45,7 @@
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/modify_password.xml" value="0.5536458333333333" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/modify_user_info.xml" value="0.5536458333333333" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/pin.xml" value="0.2672239108409321" />
+        <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/layout/test.xml" value="0.22163120567375885" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/menu/admin_login_drawerlayout.xml" value="0.3685185185185185" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/menu/admin_login_menu.xml" value="0.3537037037037037" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/menu/general_login_menu.xml" value="0.4588541666666667" />

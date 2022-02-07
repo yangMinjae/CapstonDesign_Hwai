@@ -2,20 +2,23 @@ package com.example.library_app;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.Logger;
 
 public class ServerTask_post extends AsyncTask<String, Void, String> {
-    private String basic_url="";
+    private String basic_url= "http://13.209.186.225:8080/api/v1/";
     private String add_url="";
     private URL url;
 
@@ -62,14 +65,14 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
 
         }catch (Exception e){
             e.printStackTrace();
+
         }
         return null;
     }
 
-//    @Override
-//    protected void onPostExecute(String s) {
-//        super.onPostExecute(s);
-//
-//
-//    }
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        //Log.d("abcd", s);
+    }
 }

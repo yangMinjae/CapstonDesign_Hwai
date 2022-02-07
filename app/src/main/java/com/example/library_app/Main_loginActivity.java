@@ -2,6 +2,8 @@ package com.example.library_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -26,14 +28,16 @@ public class Main_loginActivity extends AppCompatActivity {
                                         // admin이면 true, general_user면 false
     private Boolean if_member = true;  // 서버로부터 받아오는 회원인지 여부(잘못된 Email, password 면 로그인 서버는 false리턴)
 
-    private String loginUrl="https://webhook.site/5c50bb61-e3f6-434d-9854-01f7a89f03bf";
+    private String loginUrl="users/login";
+
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        context=this.getApplicationContext();
 
         login_email=findViewById(R.id.login_email);
         login_pw=findViewById(R.id.login_pw);
@@ -55,33 +59,33 @@ public class Main_loginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Email과 Password를 입력해 주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    /*
-                    서버관련:
-                    서버에 id email 전송
+
+//                    서버관련:
+//                    서버에 id email 전송
                     try{
 
                         String json = JsonString(str1, str2);
                         new ServerTask_post(loginUrl).execute(json);
-                        Toast.makeText(getApplicationContext(), json, Toast.LENGTH_SHORT).show();
+
 
 
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-                     */
-                    if(if_member){
-                        if (if_admin) {
-                            startActivity(intent2);
-                        }
-                        else if (!if_admin){
-                            startActivity(intent1);
-                        }
-                    }
-                    else{
-                        login_email.setText("");
-                        login_pw.setText("");
-                        Toast.makeText(getApplicationContext(), "잘못된 회원정보 입니다.", Toast.LENGTH_SHORT).show();
-                    }
+
+//                    if(if_member){
+//                        if (if_admin) {
+//                            startActivity(intent2);
+//                        }
+//                        else if (!if_admin){
+//                            startActivity(intent1);
+//                        }
+//                    }
+//                    else{
+//                        login_email.setText("");
+//                        login_pw.setText("");
+//                        Toast.makeText(getApplicationContext(), "잘못된 회원정보 입니다.", Toast.LENGTH_SHORT).show();
+//                    }
                 }
 
             }
