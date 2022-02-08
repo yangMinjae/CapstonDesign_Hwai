@@ -179,6 +179,8 @@ public class AdminLoginActivity extends AppCompatActivity {
                 if(pinnum.equals(str1)){
                     Intent intent=new Intent(AdminLoginActivity.this, AdminBookchangeActivity.class);
                     startActivity(intent);
+                } else{
+                    Toast.makeText(getApplicationContext(),"pin번호를 확인해 주세요",Toast.LENGTH_SHORT).show();
                 }
             }
         }).show();

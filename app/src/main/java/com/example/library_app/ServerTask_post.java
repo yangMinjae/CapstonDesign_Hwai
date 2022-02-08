@@ -56,7 +56,6 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
             conn.setDoOutput(true);
             conn.setRequestProperty("Content-Type","application/json");
             conn.setRequestProperty("Accept","application/json");
-            conn.setRequestProperty("Connection","close");
 
             byte[] outputInBytes = params[0].getBytes("UTF-8");
             OutputStream os = conn.getOutputStream();
@@ -65,17 +64,17 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
             int retCode = conn.getResponseCode();
             if(retCode==200){
                 InputStream is = conn.getInputStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
                 String line;
                 StringBuffer response = new StringBuffer();
-                while(br.readLine()!= null) {
-                    line=br.readLine();
+                while((line=br.readLine())!= null) {
                     response.append(line);
                     response.append('\n');
                 }
                 br.close();
                 String res = response.toString();
                 Log.d("test1", res);
+                conn.disconnect();
                 return res;
             }
             else {
@@ -89,16 +88,14 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
                 }
                 br.close();
                 String res = response.toString();
-                Log.d("test1", res);
+                Log.d("test2", res);
+                conn.disconnect();
                 return res;
             }
-        }catch (EOFException e){
-            e.printStackTrace();
-            post(params);
         }catch (Exception e){
             e.printStackTrace();
+            return post(params);
         }
-        return null;
     }
 
 }
