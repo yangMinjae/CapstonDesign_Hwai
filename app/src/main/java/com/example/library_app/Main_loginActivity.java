@@ -37,6 +37,7 @@ public class Main_loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        System.setProperty("http.keepAlive", "false");
         context=this.getApplicationContext();
 
         login_email=findViewById(R.id.login_email);
@@ -62,30 +63,30 @@ public class Main_loginActivity extends AppCompatActivity {
 
 //                    서버관련:
 //                    서버에 id email 전송
-//                    try{
-//
-//                        String json = JsonString(str1, str2);
-//                        new ServerTask_post(loginUrl).execute(json);
-//
-//
-//
-//                    }catch (Exception e){
-//                        e.printStackTrace();
-//                    }
+                    try{
 
-                    if(if_member){
-                        if (if_admin) {
-                            startActivity(intent2);
-                        }
-                        else if (!if_admin){
-                            startActivity(intent1);
-                        }
+                        String json = JsonString(str1, str2);
+                        new ServerTask_post(loginUrl).execute(json);
+
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
-                    else{
-                        login_email.setText("");
-                        login_pw.setText("");
-                        Toast.makeText(getApplicationContext(), "잘못된 회원정보 입니다.", Toast.LENGTH_SHORT).show();
-                    }
+
+//                    if(if_member){
+//                        if (if_admin) {
+//                            startActivity(intent2);
+//                        }
+//                        else if (!if_admin){
+//                            startActivity(intent1);
+//                        }
+//                    }
+//                    else{
+//                        login_email.setText("");
+//                        login_pw.setText("");
+//                        Toast.makeText(getApplicationContext(), "잘못된 회원정보 입니다.", Toast.LENGTH_SHORT).show();
+//                    }
                 }
 
             }
