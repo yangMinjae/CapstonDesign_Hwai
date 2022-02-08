@@ -8,82 +8,58 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class AdminBookchangeActivity extends AppCompatActivity {
 
-    private Button btn_chg1;    // 1층의 카테고리 변경 버튼
-    private Button btn_chg2;    // 2층의 카테고리 변경 버튼
-    private Button btn_chg3;    // 3층의 카테고리 변경 버튼
+    final String[] categories=getResources().getStringArray(R.array.book_category); // 카테고리 배열 string.xml에서 추가 및 삭제
+
+    private Button btn_chg;     // 카테고리 변경 버튼
     private TextView category1; // 1층의 카테고리
     private TextView category2; // 2층의 카테고리
     private TextView category3; // 3층의 카테고리
 
+    private CheckBox[][] checkBoxes;
+
     private String updated_category1;
     private String updated_category2;
     private String updated_category3;
+
     // 카테고리 변경 버튼 클릭 이벤트 리스너
     class chgBtnListener implements View.OnClickListener {
-        // 카테고리 배열 string.xml에서 추가 및 삭제
-        final String[] categories=getResources().getStringArray(R.array.book_category);
         @Override
         public void onClick(View view) {
-            // 대화 상자 생성
-            AlertDialog.Builder dlg = new AlertDialog.Builder(AdminBookchangeActivity.this);
-
-            dlg.setTitle("카테고리를 선택하세요.");
-            dlg.setItems(categories, new DialogInterface.OnClickListener() {
-                @Override
-                // 선택된 버튼의 층에 맞는 카테고리 변경
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    switch (view.getId()) {
-                        case R.id.btn_chg1:
-                            /*
-                            서버:
-                            서버에 변경된 카테고리 정보 제출
-                            서버는 카테고리정보를 업데이트
-                             */
-                            category1.setText(categories[i]);   //서버 완성후 아래와 같이 변경
-                            /*서버:
-                            updated_category1= 서버에서 category 정보를 다시 받아옴
-                            category1.setText(updated_category1);
-                             */
-                            break;
-                        case R.id.btn_chg2:
-                            /*
-                            서버:
-                            서버에 변경된 카테고리 정보 제출
-                            서버는 카테고리정보를 업데이트
-                             */
-                            category2.setText(categories[i]);   //서버 완성후 아래와 같이 변경
-                            /*서버:
-                            updated_category2= 서버에서 category 정보를 다시 받아옴
-                            category2.setText(updated_category2);
-                             */
-                            break;
-                        case R.id.btn_chg3:
-                            /*
-                            서버:
-                            서버에 변경된 카테고리 정보 제출
-                            서버는 카테고리정보를 업데이트
-                             */
-                            category3.setText(categories[i]);   //서버 완성후 아래와 같이 변경
-                            /*서버:
-                            updated_category3= 서버에서 category 정보를 다시 받아옴
-                            category3.setText(updated_category3);
-                             */
-                            break;
+            if (btn_chg.getText() == "변경") {
+                btn_chg.setText("확인");
+                for (int i = 0; i < checkBoxes.length; i++) {
+                    for (int j = 0; j < checkBoxes[0].length; j++) {
+                        checkBoxes[i][j].setVisibility(View.VISIBLE);
                     }
                 }
-            });
-
-            dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int i) {
-                    Toast.makeText(AdminBookchangeActivity.this, "카테고리가 변경되었습니다.", Toast.LENGTH_LONG).show();
+            }
+            else {
+                btn_chg.setText("변경");
+                for (int i = 0; i < checkBoxes.length; i++) {
+                    for (int j = 0; j < checkBoxes[0].length; j++) {
+                        checkBoxes[i][j].setVisibility(View.INVISIBLE);
+                    }
                 }
-            });
-            dlg.show();
+
+                check_category(checkBoxes[0], category1);
+                check_category(checkBoxes[1], category2);
+                check_category(checkBoxes[2], category3);
+
+            }
+
+        }
+    }
+
+    private void check_category(CheckBox[] cb, TextView tv) {
+        tv.setText("");
+        for (int i = 0; i < categories.length; i++) {
+            tv.append(categories[i] + " ");
         }
     }
 
@@ -92,12 +68,14 @@ public class AdminBookchangeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_bookchange);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        btn_chg1 = findViewById(R.id.btn_chg1);
-        btn_chg2 = findViewById(R.id.btn_chg2);
-        btn_chg3 = findViewById(R.id.btn_chg3);
+        btn_chg = findViewById(R.id.btn_chg);
         category1 = findViewById(R.id.category1);
         category2 = findViewById(R.id.category2);
         category3 = findViewById(R.id.category3);
+
+        checkBoxes = new CheckBox[][]{{findViewById(R.id.cb_novel_1f), findViewById(R.id.cb_science_1f), findViewById(R.id.cb_pilosophy_1f), findViewById(R.id.cb_literature_1f), findViewById(R.id.cb_assay_1f)},
+                {findViewById(R.id.cb_novel_2f), findViewById(R.id.cb_science_2f), findViewById(R.id.cb_pilosophy_2f), findViewById(R.id.cb_literature_2f), findViewById(R.id.cb_assay_2f)},
+                {findViewById(R.id.cb_novel_3f), findViewById(R.id.cb_science_3f), findViewById(R.id.cb_pilosophy_3f), findViewById(R.id.cb_literature_3f), findViewById(R.id.cb_assay_3f)}};
         /*
         서버:
         updated_category1= 서버에서 가져온 카테고리 정보 저장;
@@ -109,9 +87,6 @@ public class AdminBookchangeActivity extends AppCompatActivity {
         category3.setText(updated_category3);
         */
         chgBtnListener btnListener = new chgBtnListener();
-        btn_chg1.setOnClickListener(btnListener);
-        btn_chg2.setOnClickListener(btnListener);
-        btn_chg3.setOnClickListener(btnListener);
-
+        btn_chg.setOnClickListener(btnListener);
     }
 }

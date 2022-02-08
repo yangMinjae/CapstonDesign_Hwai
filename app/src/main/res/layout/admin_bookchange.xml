@@ -4,40 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminBookchangeActivity"
+    android:background="@color/baseclor"
     android:orientation="vertical"
     android:weightSum="3"
-    android:background="#777777"
-    >
+    tools:context=".AdminBookchangeActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:background="#ffffff"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:orientation="vertical"
         android:weightSum="10">
+
         <TextView
-            android:paddingHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/baseclor"
             android:fontFamily="@font/nanum_style"
+            android:paddingHorizontal="20dp"
             android:text="3F"
-            android:textSize="30sp"/>
+            android:textSize="30sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="10">
+            android:layout_weight="7"
+            android:orientation="horizontal">
+
             <TextView
-                android:paddingHorizontal="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="현재 배치 돼있는 책 분류: "
                 android:fontFamily="@font/nanum_style"
-                android:textSize="20sp"/>
+                android:paddingHorizontal="20dp"
+                android:text="현재 배치 돼있는 책 분류: "
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/category3"
@@ -49,47 +52,81 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_chg3"
+        <CheckBox
+            android:id="@+id/cb_novel_3f"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/btn_grey"
-            android:gravity="center"
-            android:text="변경" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="소설"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_science_3f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="과학"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_pilosophy_3f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="철학"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_literature_3f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="문학"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_assay_3f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="에세이"
+            android:visibility="invisible" />
+
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:background="#ffffff"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:orientation="vertical"
         android:weightSum="10">
+
         <TextView
-            android:paddingHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/baseclor"
             android:fontFamily="@font/nanum_style"
+            android:paddingHorizontal="20dp"
             android:text="2F"
-            android:textSize="30sp"/>
+            android:textSize="30sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="10">
+            android:layout_weight="7"
+            android:orientation="horizontal">
+
             <TextView
-                android:paddingHorizontal="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="현재 배치 돼있는 책 분류: "
                 android:fontFamily="@font/nanum_style"
-                android:textSize="20sp"/>
+                android:paddingHorizontal="20dp"
+                android:text="현재 배치 돼있는 책 분류: "
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/category2"
@@ -101,48 +138,87 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_chg2"
+        <CheckBox
+            android:id="@+id/cb_novel_2f"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/btn_grey"
-            android:gravity="center"
-            android:text="변경" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="소설"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_science_2f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="과학"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_pilosophy_2f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="철학"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_literature_2f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="문학"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_assay_2f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="에세이"
+            android:visibility="invisible" />
+
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:background="#ffffff"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:orientation="vertical"
         android:weightSum="10">
+
         <TextView
-            android:paddingHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/baseclor"
             android:fontFamily="@font/nanum_style"
+            android:paddingHorizontal="20dp"
             android:text="1F"
-            android:textSize="30sp"/>
+            android:textSize="30sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="10">
+            android:layout_weight="7"
+            android:orientation="horizontal">
+
             <TextView
-                android:paddingHorizontal="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="현재 배치 돼있는 책 분류: "
                 android:fontFamily="@font/nanum_style"
-                android:textSize="20sp"/>
+                android:paddingHorizontal="20dp"
+                android:text="현재 배치 돼있는 책 분류: "
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/category1"
@@ -154,15 +230,61 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_chg1"
+        <CheckBox
+            android:id="@+id/cb_novel_1f"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/btn_grey"
-            android:gravity="center"
-            android:text="변경" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="소설"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_science_1f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="과학"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_pilosophy_1f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="철학"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_literature_1f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="문학"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/cb_assay_1f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="에세이"
+            android:visibility="invisible" />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_chg"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/btn_grey"
+        android:gravity="center"
+        android:text="변경" />
 
 </LinearLayout>
