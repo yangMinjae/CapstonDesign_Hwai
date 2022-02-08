@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class AdminBookchangeActivity extends AppCompatActivity {
 
-    final String[] categories=getResources().getStringArray(R.array.book_category); // 카테고리 배열 string.xml에서 추가 및 삭제
+    String[] categories;
 
     private Button btn_chg;     // 카테고리 변경 버튼
     private TextView category1; // 1층의 카테고리
@@ -72,7 +72,7 @@ public class AdminBookchangeActivity extends AppCompatActivity {
         category1 = findViewById(R.id.category1);
         category2 = findViewById(R.id.category2);
         category3 = findViewById(R.id.category3);
-
+        categories=getResources().getStringArray(R.array.book_category); // 카테고리 배열 string.xml에서 추가 및 삭제
         checkBoxes = new CheckBox[][]{{findViewById(R.id.cb_novel_1f), findViewById(R.id.cb_science_1f), findViewById(R.id.cb_pilosophy_1f), findViewById(R.id.cb_literature_1f), findViewById(R.id.cb_assay_1f)},
                 {findViewById(R.id.cb_novel_2f), findViewById(R.id.cb_science_2f), findViewById(R.id.cb_pilosophy_2f), findViewById(R.id.cb_literature_2f), findViewById(R.id.cb_assay_2f)},
                 {findViewById(R.id.cb_novel_3f), findViewById(R.id.cb_science_3f), findViewById(R.id.cb_pilosophy_3f), findViewById(R.id.cb_literature_3f), findViewById(R.id.cb_assay_3f)}};
