@@ -31,7 +31,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7"
+            android:layout_weight="10"
             android:orientation="horizontal">
 
             <TextView
@@ -52,45 +52,53 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/cb_novel_3f"
+        <LinearLayout
+            android:id="@+id/cb_list_3f"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="소설"
-            android:visibility="invisible" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <CheckBox
-            android:id="@+id/cb_science_3f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="과학"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_novel_3f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="소설"
+                android:visibility="visible" />
 
-        <CheckBox
-            android:id="@+id/cb_pilosophy_3f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="철학"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_science_3f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="과학"
+                android:visibility="visible" />
 
-        <CheckBox
-            android:id="@+id/cb_literature_3f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="문학"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_pilosophy_3f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="철학"
+                android:visibility="visible" />
 
-        <CheckBox
-            android:id="@+id/cb_assay_3f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="에세이"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_literature_3f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="문학"
+                android:visibility="visible" />
+
+            <CheckBox
+                android:id="@+id/cb_assay_3f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="에세이"
+                android:visibility="visible" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -117,7 +125,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7"
+            android:layout_weight="10"
             android:orientation="horizontal">
 
             <TextView
@@ -138,50 +146,58 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/cb_novel_2f"
+        <LinearLayout
+            android:id="@+id/cb_list_2f"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="소설"
-            android:visibility="invisible" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <CheckBox
-            android:id="@+id/cb_science_2f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="과학"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_novel_2f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="소설"
+                android:visibility="visible" />
 
-        <CheckBox
-            android:id="@+id/cb_pilosophy_2f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="철학"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_science_2f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="과학"
+                android:visibility="visible" />
 
-        <CheckBox
-            android:id="@+id/cb_literature_2f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="문학"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_pilosophy_2f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="철학"
+                android:visibility="visible" />
 
-        <CheckBox
-            android:id="@+id/cb_assay_2f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="에세이"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_literature_2f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="문학"
+                android:visibility="visible" />
+
+            <CheckBox
+                android:id="@+id/cb_assay_2f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="에세이"
+                android:visibility="visible" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -209,7 +225,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7"
+            android:layout_weight="10"
             android:orientation="horizontal">
 
             <TextView
@@ -230,50 +246,58 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/cb_novel_1f"
+        <LinearLayout
+            android:id="@+id/cb_list_1f"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="소설"
-            android:visibility="invisible" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <CheckBox
-            android:id="@+id/cb_science_1f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="과학"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_novel_1f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="소설"
+                android:visibility="visible" />
 
-        <CheckBox
-            android:id="@+id/cb_pilosophy_1f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="철학"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_science_1f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="과학"
+                android:visibility="visible" />
 
-        <CheckBox
-            android:id="@+id/cb_literature_1f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="문학"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_pilosophy_1f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="철학"
+                android:visibility="visible" />
 
-        <CheckBox
-            android:id="@+id/cb_assay_1f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="에세이"
-            android:visibility="invisible" />
+            <CheckBox
+                android:id="@+id/cb_literature_1f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="문학"
+                android:visibility="visible" />
+
+            <CheckBox
+                android:id="@+id/cb_assay_1f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="에세이"
+                android:visibility="visible" />
+        </LinearLayout>
 
     </LinearLayout>
 

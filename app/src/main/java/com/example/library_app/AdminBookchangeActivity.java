@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,45 +22,28 @@ public class AdminBookchangeActivity extends AppCompatActivity {
     private TextView category2; // 2층의 카테고리
     private TextView category3; // 3층의 카테고리
 
+    private LinearLayout cb_list_1f;
+    private LinearLayout cb_list_2f;
+    private LinearLayout cb_list_3f;
+
     private CheckBox[][] checkBoxes;
 
     private String updated_category1;
     private String updated_category2;
     private String updated_category3;
 
-    // 카테고리 변경 버튼 클릭 이벤트 리스너
-    class chgBtnListener implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            if (btn_chg.getText() == "변경") {
-                btn_chg.setText("확인");
-                for (int i = 0; i < checkBoxes.length; i++) {
-                    for (int j = 0; j < checkBoxes[0].length; j++) {
-                        checkBoxes[i][j].setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-            else {
-                btn_chg.setText("변경");
-                for (int i = 0; i < checkBoxes.length; i++) {
-                    for (int j = 0; j < checkBoxes[0].length; j++) {
-                        checkBoxes[i][j].setVisibility(View.INVISIBLE);
-                    }
-                }
-
-                check_category(checkBoxes[0], category1);
-                check_category(checkBoxes[1], category2);
-                check_category(checkBoxes[2], category3);
-
-            }
-
-        }
-    }
+    private Boolean pass;
 
     private void check_category(CheckBox[] cb, TextView tv) {
         tv.setText("");
         for (int i = 0; i < categories.length; i++) {
-            tv.append(categories[i] + " ");
+            if (cb[i].isChecked()) {
+                tv.append(categories[i] + ", ");
+            }
+        }
+
+        if (!tv.getText().toString().equals("")) {
+            tv.setText(tv.getText().toString().substring(0, tv.getText().toString().length() - 2));
         }
     }
 
@@ -75,6 +59,12 @@ public class AdminBookchangeActivity extends AppCompatActivity {
         category2 = findViewById(R.id.category2);
         category3 = findViewById(R.id.category3);
 
+        cb_list_1f = findViewById(R.id.cb_list_1f);
+        cb_list_2f = findViewById(R.id.cb_list_2f);
+        cb_list_3f = findViewById(R.id.cb_list_3f);
+
+        pass = true;
+
         checkBoxes = new CheckBox[][]{{findViewById(R.id.cb_novel_1f), findViewById(R.id.cb_science_1f), findViewById(R.id.cb_pilosophy_1f), findViewById(R.id.cb_literature_1f), findViewById(R.id.cb_assay_1f)},
                 {findViewById(R.id.cb_novel_2f), findViewById(R.id.cb_science_2f), findViewById(R.id.cb_pilosophy_2f), findViewById(R.id.cb_literature_2f), findViewById(R.id.cb_assay_2f)},
                 {findViewById(R.id.cb_novel_3f), findViewById(R.id.cb_science_3f), findViewById(R.id.cb_pilosophy_3f), findViewById(R.id.cb_literature_3f), findViewById(R.id.cb_assay_3f)}};
@@ -88,7 +78,59 @@ public class AdminBookchangeActivity extends AppCompatActivity {
         category2.setText(updated_category2);
         category3.setText(updated_category3);
         */
-        chgBtnListener btnListener = new chgBtnListener();
-        btn_chg.setOnClickListener(btnListener);
+
+        View.OnClickListener chg_btn_listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (btn_chg.getText().toString().equals("변경")) {
+                    btn_chg.setText("확인");
+
+
+                    cb_list_1f.setVisibility(View.VISIBLE);
+                    cb_list_2f.setVisibility(View.VISIBLE);
+                    cb_list_3f.setVisibility(View.VISIBLE);
+
+                }
+                else {
+                    check_category(checkBoxes[0], category1);
+                    check_category(checkBoxes[1], category2);
+                    check_category(checkBoxes[2], category3);
+
+                    for (int i = 0; i < checkBoxes.length; i++) {
+                        pass = false;
+                        for (int j = 0; j < checkBoxes[0].length; j++) {
+                            if (checkBoxes[i][j].isChecked()) {
+                                pass = true;
+                                break;
+                            }
+                        }
+                        if (!pass) {
+                            break;
+                        }
+                    }
+
+                    if (!pass) {
+                        Toast.makeText(getApplicationContext(), "하나 이상의 카테고리를 선택하세요.", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else {
+                        btn_chg.setText("변경");
+
+                        cb_list_1f.setVisibility(View.GONE);
+                        cb_list_2f.setVisibility(View.GONE);
+                        cb_list_3f.setVisibility(View.GONE);
+
+                    }
+
+
+
+                }
+
+            }
+        };
+
+        btn_chg.setOnClickListener(chg_btn_listener);
+
     }
 }
