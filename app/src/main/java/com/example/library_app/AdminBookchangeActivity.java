@@ -6,14 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AdminBookchangeActivity extends AppCompatActivity {
+public class AdminBookchangeActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     String[] categories;
 
@@ -31,6 +33,8 @@ public class AdminBookchangeActivity extends AppCompatActivity {
     private String updated_category1;
     private String updated_category2;
     private String updated_category3;
+
+
 
     private Boolean pass;
 
@@ -111,7 +115,7 @@ public class AdminBookchangeActivity extends AppCompatActivity {
                     }
 
                     if (!pass) {
-                        Toast.makeText(getApplicationContext(), "하나 이상의 카테고리를 선택하세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "층마다 적어도 하나의 카테고리를 선택하세요", Toast.LENGTH_SHORT).show();
 
                     }
                     else {
@@ -130,7 +134,45 @@ public class AdminBookchangeActivity extends AppCompatActivity {
             }
         };
 
-        btn_chg.setOnClickListener(chg_btn_listener);
 
+        btn_chg.setOnClickListener(chg_btn_listener);
+        for(int i =0; i<checkBoxes.length;i++){
+            for(int j = 0; j<checkBoxes[i].length;j++){
+                checkBoxes[i][j].setOnCheckedChangeListener(this);
+            }
+        }
+
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        String self = compoundButton.getText().toString();
+        if(compoundButton.isChecked()){
+            for(int i =0; i<checkBoxes.length;i++){
+                for(int j = 0; j<checkBoxes[i].length;j++){
+                    String a= checkBoxes[i][j].getText().toString();
+                    if(!checkBoxes[i][j].equals(compoundButton)){
+                        if(self.equals(a)){
+                            checkBoxes[i][j].setEnabled(false);
+                        }
+                    }
+                    if(checkBoxes[i][j].isChecked()){
+                    }
+                }
+            }
+
+        }
+        else {
+            for(int i =0; i<checkBoxes.length;i++){
+                for(int j = 0; j<checkBoxes[i].length;j++){
+                    String a= checkBoxes[i][j].getText().toString();
+                    if(self.equals(a)){
+                        checkBoxes[i][j].setEnabled(true);
+                    }
+                    if(checkBoxes[i][j].isChecked()){
+                    }
+                }
+            }
+        }
     }
 }
