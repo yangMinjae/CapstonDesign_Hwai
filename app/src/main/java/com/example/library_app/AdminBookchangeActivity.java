@@ -185,7 +185,5 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
                 }
             }
         }
-
-
     }
 }
