@@ -53,6 +53,24 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
         }
     }
 
+    private void check_three(CheckBox[][] cb) {
+        int cnt = 0;
+        for (int i = 0; i < cb.length; i++) {
+            for (int j = 0; j < cb[0].length; j++) {
+                if (cb[i][j].isChecked()) {
+                    cnt++;
+                }
+            }
+            if (cnt >= 3) {
+                for (int j = 0; j < cb[0].length; j++) {
+                    if (!cb[i][j].isChecked()){
+                        cb[i][j].setEnabled(false);
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,8 +187,6 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
                             checkBoxes[i][j].setEnabled(false);
                         }
                     }
-                    if(checkBoxes[i][j].isChecked()){
-                    }
                 }
             }
 
@@ -187,5 +203,7 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
                 }
             }
         }
+
+        check_three(checkBoxes);
     }
 }
