@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +20,11 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
 
     String[] categories;
 
-    private Button btn_chg;     // 카테고리 변경 버튼
-    private TextView category1; // 1층의 카테고리
-    private TextView category2; // 2층의 카테고리
-    private TextView category3; // 3층의 카테고리
+    private Button btn_chg;             // 카테고리 변경 버튼
+    private Button btn_submitCategory;  //서버에 제출 버튼
+    private TextView category1;         // 1층의 카테고리
+    private TextView category2;         // 2층의 카테고리
+    private TextView category3;         // 3층의 카테고리
 
     private LinearLayout cb_list_1f;
     private LinearLayout cb_list_2f;
@@ -62,6 +64,7 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
         category1 = findViewById(R.id.category1);
         category2 = findViewById(R.id.category2);
         category3 = findViewById(R.id.category3);
+        btn_submitCategory = findViewById(R.id.btn_submitCategory);
 
         cb_list_1f = findViewById(R.id.cb_list_1f);
         cb_list_2f = findViewById(R.id.cb_list_2f);
@@ -88,8 +91,8 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
             public void onClick(View view) {
 
                 if (btn_chg.getText().toString().equals("변경")) {
+                    btn_submitCategory.setEnabled(false);
                     btn_chg.setText("확인");
-
 
                     cb_list_1f.setVisibility(View.VISIBLE);
                     cb_list_2f.setVisibility(View.VISIBLE);
@@ -97,6 +100,7 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
 
                 }
                 else {
+                    btn_submitCategory.setEnabled(true);
                     check_category(checkBoxes[0], category1);
                     check_category(checkBoxes[1], category2);
                     check_category(checkBoxes[2], category3);
@@ -141,6 +145,15 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
                 checkBoxes[i][j].setOnCheckedChangeListener(this);
             }
         }
+        btn_submitCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+                서버:
+                서버로 변경된 카테고리 전송
+                 */
+            }
+        });
 
     }
 

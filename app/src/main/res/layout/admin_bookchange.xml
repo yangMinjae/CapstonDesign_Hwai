@@ -300,15 +300,33 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_chg"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/btn_grey"
-        android:gravity="center"
-        android:text="변경" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        >
+        <Button
+            android:id="@+id/btn_chg"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/btn_blue"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:text="변경" />
+        <Button
+            android:id="@+id/btn_submitCategory"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/btn_red"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:text="제출" />
+    </LinearLayout>
+
 
 </LinearLayout>
