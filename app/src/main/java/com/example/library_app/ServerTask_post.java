@@ -19,7 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import okhttp3.internal.http.HttpHeaders;
+
 
 public class ServerTask_post extends AsyncTask<String, Void, String> {
     private String basic_url= "http://3.36.81.230:8080/api/v1/";

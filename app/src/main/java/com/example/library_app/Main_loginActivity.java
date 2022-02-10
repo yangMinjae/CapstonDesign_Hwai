@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.HashMap;
@@ -24,7 +24,7 @@ public class Main_loginActivity extends AppCompatActivity {
     private Button btn_enter; // Login 버튼입니다.
     private TextView tv_forgotPassword; // Login 버튼 하단의 Forgot Password? Textview입니다.
     private TextView tv_createAccount;  // Login 버튼 하단의 createAccount? Textview입니다.
-    private Boolean if_admin = true;   // 로그인 버튼을 누른 후 서버로 부터 전달받게되는 admin/genereal_user여부
+    private Boolean if_admin = false;   // 로그인 버튼을 누른 후 서버로 부터 전달받게되는 admin/genereal_user여부
                                         // admin이면 true, general_user면 false
     private Boolean if_member = true;  // 서버로부터 받아오는 회원인지 여부(잘못된 Email, password 면 로그인 서버는 false리턴)
 
