@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,13 +29,14 @@ import com.google.android.material.navigation.NavigationView;
 public class AdminLoginActivity extends AppCompatActivity {
 
     private NavigationView navigationView;
-    private final String pinnum="123456";
 
     private SwipeRefreshLayout swipe_refresh;
     private ListView admin_listView1;
     private Admin_ListViewAdapter adapter;
 
     private String username;
+    private int id;
+    private int pinNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +44,12 @@ public class AdminLoginActivity extends AppCompatActivity {
         setContentView(R.layout.admin_login_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        /*
-        서버:
-        서버에서 pinnum정보를 가져와서
-        pinnum에 대입해준다.
-         */
+        Intent receive_intent = getIntent();
+        username = receive_intent.getStringExtra("name");   //이전 인텐트(메인 로그인 화면)로 부터, 서버로 부터 받아온 name,id값 받아오기
+        id = receive_intent.getIntExtra("id",-1);
+        pinNum = receive_intent.getIntExtra("pinNum", -1);
+
+        Log.d("test", ""+id+"/"+username+"/"+pinNum);
 
         swipe_refresh = findViewById(R.id.admin_swipe_refresh);
         admin_listView1 = findViewById(R.id.admin_listview_1);
@@ -99,7 +102,6 @@ public class AdminLoginActivity extends AppCompatActivity {
         서버에서 사용자 이름을 받아온다.
         username에 대입
          */
-        username = "홍길동";
         navigationView=(NavigationView) findViewById(R.id.admin_nav_view);
         View headerview = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerview.findViewById(R.id.admin_text_header);
@@ -176,7 +178,7 @@ public class AdminLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 String str1=pin.getText().toString();
-                if(pinnum.equals(str1)){
+                if(pinNum==Integer.parseInt(str1)){
                     Intent intent=new Intent(AdminLoginActivity.this, AdminBookchangeActivity.class);
                     startActivity(intent);
                 } else{

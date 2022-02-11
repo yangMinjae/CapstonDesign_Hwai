@@ -6,7 +6,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +16,9 @@ import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.textfield.TextInputEditText;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -24,21 +29,15 @@ public class Main_loginActivity extends AppCompatActivity {
     private Button btn_enter; // Login 버튼입니다.
     private TextView tv_forgotPassword; // Login 버튼 하단의 Forgot Password? Textview입니다.
     private TextView tv_createAccount;  // Login 버튼 하단의 createAccount? Textview입니다.
-    private Boolean if_admin = true;   // 로그인 버튼을 누른 후 서버로 부터 전달받게되는 admin/genereal_user여부
-                                        // admin이면 true, general_user면 false
-    private Boolean if_member = true;  // 서버로부터 받아오는 회원인지 여부(잘못된 Email, password 면 로그인 서버는 false리턴)
 
     private String loginUrl="users/login";
 
-    public static Context context;
-
+    private String rtnd_res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        System.setProperty("http.keepAlive", "false");
-        context=this.getApplicationContext();
 
         login_email=findViewById(R.id.login_email);
         login_pw=findViewById(R.id.login_pw);
@@ -61,31 +60,36 @@ public class Main_loginActivity extends AppCompatActivity {
                 }
                 else{
 
-////                    서버관련:
-////                    서버에 id email 전송
-//                    try{
-//
-//                        String json = JsonString(str1, str2);
-//                        new ServerTask_post(loginUrl).execute(json);
-//
-//
-//
-//                    }catch (Exception e){
-//                        e.printStackTrace();
-//                    }
+                    try{
 
-                    if(if_member){
-                        if (if_admin) {
-                            startActivity(intent2);
+                        String json = JsonString(str1, str2);
+                        ServerTask_post task = new ServerTask_post(loginUrl);
+                        task.execute(json);
+                        rtnd_res= task.get();
+                        int status = task.status;
+                        Log.d("test1",""+status);
+                        Log.d("test2",""+rtnd_res);
+
+                        if (status==200){   //관리자 로그인 (서버는 로그인 성공시 status 200 을 리턴)
+                            LoginParse myInfo = LoginParsing(rtnd_res);
+                            if(myInfo.getAdmin()){
+                                intent2.putExtra("id",myInfo.getId());
+                                intent2.putExtra("name",myInfo.getName());
+                                intent2.putExtra("pinNum",myInfo.getPinNum());  //다음 인텐트로 정보 넘기기
+                                startActivity(intent2);
+                            }else {     //일반 로그인
+                                intent1.putExtra("id",myInfo.getId());          //다음 인텐트로 정보 넘기기
+                                intent1.putExtra("name",myInfo.getName());
+                                startActivity(intent1);
+                            }
+                        } else {    //로그인 실패시 토스트 메시지 출력
+                            login_email.setText("");
+                            login_pw.setText("");
+                            login_email.requestFocus();
+                            Toast.makeText(getApplicationContext(), "올바르지 않은 회원정보입니다.\nEmail과 Password를 확인해 주세요.", Toast.LENGTH_SHORT).show();
                         }
-                        else if (!if_admin){
-                            startActivity(intent1);
-                        }
-                    }
-                    else{
-                        login_email.setText("");
-                        login_pw.setText("");
-                        Toast.makeText(getApplicationContext(), "잘못된 회원정보 입니다.", Toast.LENGTH_SHORT).show();
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
                 }
 
@@ -112,11 +116,28 @@ public class Main_loginActivity extends AppCompatActivity {
         return email.length()==0 || pw.length()==0;
     }
     private String JsonString(String email, String pw) throws Exception{    // email과 pw를 jsonstring으로 변환하기위한 함수
+                                                                            // 변환후, ServerTask_post.execute()의 인자로 사용됨
         HashMap<String, String> param = new HashMap<String, String>();
         param.put("email",email);
         param.put("pw",pw);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(param);
         return json;
+    }
+    private LoginParse LoginParsing(String json){       // 로그인 성공시 서버로 부터 받아온 정보를 LoginParse클래스에 저장 후 리턴
+        try{
+            JSONObject jsonObject = new JSONObject(json);
+            LoginParse myInfo = new LoginParse();
+
+            myInfo.setId(jsonObject.getInt("id"));
+            myInfo.setName(jsonObject.getString("name"));
+            myInfo.setAdmin(jsonObject.getBoolean("admin"));
+            myInfo.setPinNum(jsonObject.getInt("pinNum"));
+
+            return myInfo;
+        }catch (JSONException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }

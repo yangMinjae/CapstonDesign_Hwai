@@ -91,16 +91,14 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
             public void onClick(View view) {
 
                 if (btn_chg.getText().toString().equals("변경")) {
-                    btn_submitCategory.setEnabled(false);
                     btn_chg.setText("확인");
-
+                    btn_submitCategory.setEnabled(false);
                     cb_list_1f.setVisibility(View.VISIBLE);
                     cb_list_2f.setVisibility(View.VISIBLE);
                     cb_list_3f.setVisibility(View.VISIBLE);
 
                 }
                 else {
-                    btn_submitCategory.setEnabled(true);
                     check_category(checkBoxes[0], category1);
                     check_category(checkBoxes[1], category2);
                     check_category(checkBoxes[2], category3);
@@ -124,13 +122,12 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
                     }
                     else {
                         btn_chg.setText("변경");
-
+                        btn_submitCategory.setEnabled(true);
                         cb_list_1f.setVisibility(View.GONE);
                         cb_list_2f.setVisibility(View.GONE);
                         cb_list_3f.setVisibility(View.GONE);
 
                     }
-
 
 
                 }

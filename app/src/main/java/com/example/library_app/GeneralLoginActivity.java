@@ -11,6 +11,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -26,6 +27,7 @@ public class GeneralLoginActivity extends AppCompatActivity {
     private SwipeRefreshLayout general_swipe_refresh;
     private General_ListViewAdapter adapter;
     private String username;
+    private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,11 @@ public class GeneralLoginActivity extends AppCompatActivity {
 
         adapter = new General_ListViewAdapter(GeneralLoginActivity.this);
         general_listview_1.setAdapter(adapter);
+
+        Intent receive_intent = getIntent();        //이전 인텐트(메인 로그인 화면)로 부터, 서버로 부터 받아온 name,id값 받아오기
+        username = receive_intent.getStringExtra("name");
+        id = receive_intent.getIntExtra("id",-1);
+        Log.d("test", ""+id+"/"+username+"/");
 
                 /*
         서버:
@@ -84,7 +91,6 @@ public class GeneralLoginActivity extends AppCompatActivity {
         서버에서 사용자 이름을 받아온다.
         username에 대입
          */
-        username = "김철수";
         navigationView=(NavigationView) findViewById(R.id.general_nav_view);
         View headerview = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerview.findViewById(R.id.general_text_header);

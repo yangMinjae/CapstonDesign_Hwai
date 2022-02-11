@@ -25,6 +25,7 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
     private String basic_url= "http://3.36.81.230:8080/api/v1/";
     private String add_url="";
     private URL url;
+    protected int status;
 
     public ServerTask_post(String add_url){
         this.add_url=add_url;
@@ -43,7 +44,6 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-
     }
 
     private String post(String ... params) {
@@ -62,6 +62,7 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
             os.write( outputInBytes );
             os.close();
             int retCode = conn.getResponseCode();
+            this.status=retCode;
             if(retCode==200){
                 InputStream is = conn.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
@@ -73,7 +74,6 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
                 }
                 br.close();
                 String res = response.toString();
-                Log.d("test1", res);
                 conn.disconnect();
                 return res;
             }
@@ -88,7 +88,6 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
                 }
                 br.close();
                 String res = response.toString();
-                Log.d("test2", res);
                 conn.disconnect();
                 return res;
             }
