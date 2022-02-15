@@ -26,9 +26,11 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
     private String add_url="";
     private URL url;
     protected int status;
+    protected int rtndStatus;
 
-    public ServerTask_post(String add_url){
+    public ServerTask_post(String add_url, int status){
         this.add_url=add_url;
+        this.status = status;
         try{
             this.url= new URL(this.basic_url+this.add_url);
         } catch (Exception e){
@@ -57,13 +59,15 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
             conn.setRequestProperty("Content-Type","application/json");
             conn.setRequestProperty("Accept","application/json");
 
+            Log.d("test",params[0]);
             byte[] outputInBytes = params[0].getBytes("UTF-8");
             OutputStream os = conn.getOutputStream();
             os.write( outputInBytes );
             os.close();
             int retCode = conn.getResponseCode();
-            this.status=retCode;
-            if(retCode==200){
+            Log.d("test_ret", ""+retCode);
+            if(retCode==this.status){
+                rtndStatus=retCode;
                 InputStream is = conn.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
                 String line;
@@ -75,9 +79,11 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
                 br.close();
                 String res = response.toString();
                 conn.disconnect();
+                Log.d("test", "1234567890");
                 return res;
             }
             else {
+                rtndStatus=retCode;
                 InputStream is = conn.getErrorStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;

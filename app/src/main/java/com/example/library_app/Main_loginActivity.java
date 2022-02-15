@@ -33,6 +33,8 @@ public class Main_loginActivity extends AppCompatActivity {
     private String loginUrl="users/login";
 
     private String rtnd_res;
+
+    private final int loginRet=200;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,14 +65,14 @@ public class Main_loginActivity extends AppCompatActivity {
                     try{
 
                         String json = JsonString(str1, str2);
-                        ServerTask_post task = new ServerTask_post(loginUrl);
+                        ServerTask_post task = new ServerTask_post(loginUrl, loginRet);
                         task.execute(json);
                         rtnd_res= task.get();
-                        int status = task.status;
-                        Log.d("test1",""+status);
+                        int rtndStatus = task.rtndStatus;
+                        Log.d("test1",""+rtndStatus);
                         Log.d("test2",""+rtnd_res);
 
-                        if (status==200){   //관리자 로그인 (서버는 로그인 성공시 status 200 을 리턴)
+                        if (rtndStatus==loginRet){   //관리자 로그인 (서버는 로그인 성공시 status 200 을 리턴)
                             LoginParse myInfo = LoginParsing(rtnd_res);
                             if(myInfo.getAdmin()){
                                 intent2.putExtra("id",myInfo.getId());
