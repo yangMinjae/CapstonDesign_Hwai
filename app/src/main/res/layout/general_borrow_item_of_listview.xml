@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="5dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/book_title"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/nanum_style"
+            android:text="책 제목"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/book_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="위치 :"
+            android:textAlignment="viewStart" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_borrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:background="@color/not_over"
+        android:text="대출" />
+
+</LinearLayout>

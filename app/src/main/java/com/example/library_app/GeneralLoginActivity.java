@@ -112,6 +112,10 @@ public class GeneralLoginActivity extends AppCompatActivity {
                     case R.id.logout:
                         finish();
                         break;
+                    case R.id.lend_book:
+                        Intent intent2 = new Intent(GeneralLoginActivity.this, GeneralBorrowBookActivity.class);
+                        startActivity(intent2);
+                        break;
                 }
                 DrawerLayout drawer = findViewById(R.id.general_drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
