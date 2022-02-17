@@ -30,7 +30,7 @@ public class Main_loginActivity extends AppCompatActivity {
     private TextView tv_forgotPassword; // Login 버튼 하단의 Forgot Password? Textview입니다.
     private TextView tv_createAccount;  // Login 버튼 하단의 createAccount? Textview입니다.
 
-    private String loginUrl="users/login";
+    private final String loginUrl="users/login";
 
     private String rtnd_res;
 

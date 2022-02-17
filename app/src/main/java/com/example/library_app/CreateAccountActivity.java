@@ -34,7 +34,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private Boolean admin;
 
-    private String joinurl="users/join";
+    private final String joinurl="users/join";
     private String rtnd_res;
     private final int joinRet=201;
 
