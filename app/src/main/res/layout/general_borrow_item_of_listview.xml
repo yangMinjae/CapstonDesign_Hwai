@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/chatting_roomCol"
     android:orientation="horizontal"
     android:paddingTop="5dp">
 
@@ -12,10 +13,11 @@
 
         <TextView
             android:id="@+id/book_title"
-            android:layout_width="330dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:fontFamily="@font/nanum_style"
+            android:paddingLeft="15dp"
             android:text="책 제목"
             android:textColor="@color/black"
             android:textSize="25sp" />
@@ -26,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:paddingLeft="250dp"
             android:text="위치 :"
             android:textAlignment="viewStart" />
     </LinearLayout>

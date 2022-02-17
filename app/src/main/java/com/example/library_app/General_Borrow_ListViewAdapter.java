@@ -11,11 +11,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class General_Borrow_LIstViewAdapter extends BaseAdapter {
+public class General_Borrow_ListViewAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<General_Borrow_ListItem> borrow_listItems = new ArrayList<General_Borrow_ListItem>();
 
-    public General_Borrow_LIstViewAdapter(Context context) {
+    public General_Borrow_ListViewAdapter(Context context) {
         this.mContext = context;
     }
 
@@ -66,7 +66,7 @@ public class General_Borrow_LIstViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void addItem(String title, String location) {
+    public void borrow_addItem(String title, String location) {
         General_Borrow_ListItem listItem = new General_Borrow_ListItem();
 
         listItem.setTitle(title);

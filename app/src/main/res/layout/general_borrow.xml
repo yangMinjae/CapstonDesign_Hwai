@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/baseclor"
     android:orientation="vertical"
     android:weightSum="3"
     tools:context=".GeneralBorrowBookActivity">
@@ -12,7 +12,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/baseclor"
         android:orientation="horizontal">
 
         <TextView
@@ -20,7 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="예상 반납 기한 :" />
+            android:text="예상 반납 기한 :"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/expected_return_date"
@@ -29,13 +31,22 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:text="yyyy-mm-dd"
-            android:textColor="#F44336" />
+            android:textColor="#F44336"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/general_borrow_listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/general_borrow_swipe_refresh" >
 
+        <ListView
+            android:id="@+id/general_borrow_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@color/baseclor"></ListView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

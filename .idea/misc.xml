@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/_general_borrow.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/admin_bookchange.xml" value="0.26721014492753625" />
         <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/admin_item_of_listview.xml" value="0.33" />
         <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/admin_login_main.xml" value="0.1640625" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/general_borrow_item_of_listview.xml" value="0.5" />
         <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/general_item_of_listview.xml" value="0.33" />
         <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/general_login_appbar.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/general_login_header.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/chami/git_capston/app/src/main/res/layout/general_login_main.xml" value="0.18518518518518517" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/borderline.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/kyl13/AndroidStudioProjects/Library_App/app/src/main/res/drawable-v24/borderline_bottom.xml" value="0.15648148148148147" />
