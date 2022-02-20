@@ -121,6 +121,8 @@ public class AdminLoginActivity extends AppCompatActivity {
                         break;
                     case R.id.admin_Modi_user:
                         Intent intent1=new Intent(AdminLoginActivity.this, ModifyPasswordActivity.class);
+                        intent1.putExtra("admin",true);
+                        intent1.putExtra("id",id);
                         startActivity(intent1);
                         break;
                     case R.id.logout:

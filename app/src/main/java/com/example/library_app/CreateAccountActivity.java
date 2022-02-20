@@ -65,9 +65,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                 str5=submit_PW.getText().toString();        // 버튼 클릭시 Edittext의 text를 가져옴
 
                 admin = checkbox_ifadmin.isChecked() ? true : false;
-                str3=telParse(str3);
 
-                if(str1.length()>=2 && str2.length()>=6 && str3.length()>=13 && str4.length()>=9 && str5.length()>=4){  // 각 Edittext가 일정 길이 이상 채워져 있을때만 제출 가능
+                if(str1.length()>=2 && str2.length()>=6 && str3.length()>=11 && str4.length()>=9 && str5.length()>=6){  // 각 Edittext가 일정 길이 이상 채워져 있을때만 제출 가능
 
                     try{
                         String json = JsonString(str1,str2,str3,str4,str5,admin);
@@ -75,8 +74,6 @@ public class CreateAccountActivity extends AppCompatActivity {
                         task.execute(json);
                         rtnd_res= task.get();
                         int rtndStatus = task.rtndStatus;
-                        Log.d("test1",""+rtndStatus);
-                        Log.d("test2",""+rtnd_res);
 
                         if(rtndStatus==joinRet){
                             Toast.makeText(getApplicationContext(),"회원가입 완료",Toast.LENGTH_SHORT).show();
@@ -90,7 +87,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"회원가입 정보를 제대로 입력해 주세요.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"회원가입 정보를 제대로 입력해 주세요.\n생년월일:6자, email:9자이상",Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -109,13 +106,5 @@ public class CreateAccountActivity extends AppCompatActivity {
         String json = objectMapper.writeValueAsString(param);
         return json;
     }
-    private String telParse(String tel){
-        String tel1;
-        String tel2;
-        String tel3;
-        tel1=tel.substring(0,3);
-        tel2=tel.substring(3,7);
-        tel3=tel.substring(7);
-        return tel1+"-"+tel2+"-"+tel3;
-    }
+
 }

@@ -45,7 +45,6 @@ public class GeneralLoginActivity extends AppCompatActivity {
         Intent receive_intent = getIntent();        //이전 인텐트(메인 로그인 화면)로 부터, 서버로 부터 받아온 name,id값 받아오기
         username = receive_intent.getStringExtra("name");
         id = receive_intent.getIntExtra("id",-1);
-        Log.d("test", ""+id+"/"+username+"/");
 
                 /*
         서버:
@@ -107,6 +106,8 @@ public class GeneralLoginActivity extends AppCompatActivity {
                         break;
                     case R.id.general_Modi_user:
                         Intent intent1=new Intent(GeneralLoginActivity.this, ModifyPasswordActivity.class);
+                        intent1.putExtra("admin",false);
+                        intent1.putExtra("id",id);
                         startActivity(intent1);
                         break;
                     case R.id.logout:

@@ -2,11 +2,8 @@ package com.example.library_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -69,11 +66,10 @@ public class Main_loginActivity extends AppCompatActivity {
                         task.execute(json);
                         rtnd_res= task.get();
                         int rtndStatus = task.rtndStatus;
-                        Log.d("test1",""+rtndStatus);
-                        Log.d("test2",""+rtnd_res);
+                        Log.d("Login",rtnd_res);
 
                         if (rtndStatus==loginRet){   //관리자 로그인 (서버는 로그인 성공시 status 200 을 리턴)
-                            LoginParse myInfo = LoginParsing(rtnd_res);
+                            MyInfo myInfo = LoginParsing(rtnd_res);
                             if(myInfo.getAdmin()){
                                 intent2.putExtra("id",myInfo.getId());
                                 intent2.putExtra("name",myInfo.getName());
@@ -126,10 +122,10 @@ public class Main_loginActivity extends AppCompatActivity {
         String json = objectMapper.writeValueAsString(param);
         return json;
     }
-    private LoginParse LoginParsing(String json){       // 로그인 성공시 서버로 부터 받아온 정보를 LoginParse클래스에 저장 후 리턴
+    private MyInfo LoginParsing(String json){       // 로그인 성공시 서버로 부터 받아온 정보를 LoginParse클래스에 저장 후 리턴
         try{
             JSONObject jsonObject = new JSONObject(json);
-            LoginParse myInfo = new LoginParse();
+            MyInfo myInfo = new MyInfo();
 
             myInfo.setId(jsonObject.getInt("id"));
             myInfo.setName(jsonObject.getString("name"));
