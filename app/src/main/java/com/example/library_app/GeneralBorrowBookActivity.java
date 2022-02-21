@@ -2,6 +2,7 @@ package com.example.library_app;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,8 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,6 +29,9 @@ public class GeneralBorrowBookActivity extends AppCompatActivity {
 
 
     private TextView expected_return_date;
+
+    private final String receiveUrl="books/list";
+    private final int receiveRet=200;
 
     private void setReturnDate(TextView tv) {
         Calendar cal = Calendar.getInstance();
@@ -39,50 +48,76 @@ public class GeneralBorrowBookActivity extends AppCompatActivity {
         setContentView(R.layout.general_borrow);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+
         general_borrow_swipe_refresh = findViewById(R.id.general_borrow_swipe_refresh);
         general_borrow_listview = findViewById(R.id.general_borrow_listview);
 
-        adapter = new General_Borrow_ListViewAdapter(GeneralBorrowBookActivity.this);
-        general_borrow_listview.setAdapter(adapter);
+        showView();
 
         expected_return_date = findViewById(R.id.expected_return_date);
         setReturnDate(expected_return_date);
 
-        adapter.borrow_addItem("헨젤과 그레텔", "A");
-        adapter.borrow_addItem("햇님 달님", "B");
-        adapter.borrow_addItem("흥부전", "C");
-        adapter.borrow_addItem("신데렐라", "A");
-        adapter.borrow_addItem("선녀와 나무꾼", "C");
-        adapter.borrow_addItem("금도끼 은도끼", "B");
-        adapter.borrow_addItem("빨간머리 앤", "A");
-        adapter.borrow_addItem("헨젤과 그레텔", "A");
-        adapter.borrow_addItem("햇님 달님", "B");
-        adapter.borrow_addItem("흥부전", "C");
-        adapter.borrow_addItem("신데렐라", "A");
-        adapter.borrow_addItem("선녀와 나무꾼", "C");
-        adapter.borrow_addItem("금도끼 은도끼", "B");
-        adapter.borrow_addItem("빨간머리 앤", "A");
-        adapter.borrow_addItem("헨젤과 그레텔", "A");
-        adapter.borrow_addItem("햇님 달님", "B");
-        adapter.borrow_addItem("흥부전", "C");
-        adapter.borrow_addItem("신데렐라", "A");
-        adapter.borrow_addItem("선녀와 나무꾼", "C");
-        adapter.borrow_addItem("금도끼 은도끼", "B");
-        adapter.borrow_addItem("빨간머리 앤", "A");
-
         general_borrow_swipe_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getApplicationContext(), "TEST_TEST_TEST", Toast.LENGTH_SHORT).show();
-                /*
-                서버:
-                해당 사용자가 대출 가능한 책이 추가되었을경우, 리스트뷰에 추가, 반납되었다면, 삭제
-                 */
-                //서버통신완료후 setRefreshing(false);
+                Toast.makeText(getApplicationContext(), "현재 회원님의 대출정보입니다.", Toast.LENGTH_SHORT).show();
+                showView();
                 general_borrow_swipe_refresh.setRefreshing(false);
             }
         });
 
     }
+    private void showView(){
+        adapter = new General_Borrow_ListViewAdapter(GeneralBorrowBookActivity.this);
+        general_borrow_listview.setAdapter(adapter);
 
+        //adapter.borrow_reset();
+        try{
+            ServerTask_get task = new ServerTask_get(receiveUrl, receiveRet);
+            task.execute();
+            String rtnd_res= task.get();
+            int rtndStatus = task.rtndStatus;
+
+            if(rtndStatus==receiveRet){
+                ArrayList<BookInfo> a = receiveParsing(rtnd_res);
+                showBooklist(a);
+            }else {
+                JSONObject jsonObject = new JSONObject(rtnd_res);
+                String errormessage = jsonObject.getString("message");
+                Toast.makeText(getApplicationContext(),errormessage,Toast.LENGTH_LONG);
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    private ArrayList<BookInfo> receiveParsing(String json){       // 로그인 성공시 서버로 부터 받아온 정보를 LoginParse클래스에 저장 후 리턴
+        try{
+            JSONArray bookArray = new JSONArray(json);
+            ArrayList<BookInfo> booklist = new ArrayList<BookInfo>();
+            for(int i=0; i<bookArray.length();i++){
+                JSONObject bookObject = bookArray.getJSONObject(i);
+                BookInfo bookInfo = new BookInfo();
+                bookInfo.setId(bookObject.getInt("id"));
+                bookInfo.setTitle(bookObject.getString("title"));
+                bookInfo.setCurrent(bookObject.getString("current"));
+                booklist.add(bookInfo);
+
+            }
+            return  booklist;
+        }catch (JSONException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    private void showBooklist(ArrayList<BookInfo> a){
+        for (int i = 0; i < a.size(); i++) {
+            BookInfo book=a.get(i);
+            if(book.getCurrent().equals("null")){
+                adapter.borrow_addItem(book.getTitle(),"?");
+            } else{
+                adapter.borrow_addItem(book.getTitle(),book.getCurrent());
+            }
+        }
+    }
 }

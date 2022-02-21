@@ -74,4 +74,8 @@ public class General_Borrow_ListViewAdapter extends BaseAdapter {
 
         borrow_listItems.add(listItem);
     }
+
+    public void borrow_reset(){
+        borrow_listItems.clear();
+    }
 }
