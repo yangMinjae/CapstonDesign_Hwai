@@ -16,6 +16,13 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
+import java.util.concurrent.ExecutionException;
+
 public class AdminBookchangeActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     String[] categories;
@@ -36,7 +43,13 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
     private String updated_category2;
     private String updated_category3;
 
+    private final String shelfUrl="categories/shelf";
+    private final int shelfRet=200;
 
+    private final String changeUrl="categories/change";
+    private final int changeRet=204;
+
+    private String rtnd_res;
 
     private Boolean pass;
 
@@ -51,6 +64,37 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
         if (!tv.getText().toString().equals("")) {
             tv.setText(tv.getText().toString().substring(0, tv.getText().toString().length() - 2));
         }
+    }
+
+    private void get_category() {
+        try{
+            ServerTask_get task = new ServerTask_get(shelfUrl, shelfRet);
+            task.execute();
+            rtnd_res = task.get();
+
+            if(task.rtndStatus == shelfRet){
+                try{
+                    JSONArray jsonArray = new JSONArray(rtnd_res);
+                    String[] category_ = new String[jsonArray.length()];
+                    for (int i=0; i<category_.length; i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String genre = jsonObject.getString("genre");
+                        int shelf = Integer.parseInt(jsonObject.getString("shelf"));
+                        category_[shelf-1] = genre;
+                    }
+                    updated_category1 = category_[0];
+                    updated_category2 = category_[1];
+                    updated_category3 = category_[2];
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -85,6 +129,10 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
         category2.setText(updated_category2);
         category3.setText(updated_category3);
         */
+        get_category();
+        category1.setText(updated_category1);
+        category2.setText(updated_category2);
+        category3.setText(updated_category3);
 
         View.OnClickListener chg_btn_listener = new View.OnClickListener() {
             @Override
@@ -148,7 +196,9 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
                 /*
                 서버:
                 서버로 변경된 카테고리 전송
+                shelf_id 와 oneF[], twoF[], threeF[] 전송
                  */
+
             }
         });
 
