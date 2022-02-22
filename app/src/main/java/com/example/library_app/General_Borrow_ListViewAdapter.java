@@ -55,22 +55,24 @@ public class General_Borrow_ListViewAdapter extends BaseAdapter {
         btn_borrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                대출 버튼을 누른 책을 리스트에서 없애고,
-                서버로 대출 정보 전송
-                 */
-                Toast.makeText(mContext.getApplicationContext(), "대출 버튼 눌림", Toast.LENGTH_SHORT).show();
+                int b_id= general_borrow_listItem.getBookId();
+                int u_id= ((GeneralBorrowBookActivity)mContext).getUserId();
+                int rtndstatus=((GeneralBorrowBookActivity)mContext).lendBook(b_id,u_id);
+                if(rtndstatus==((GeneralBorrowBookActivity)mContext).getLendRet()){
+                    Toast.makeText(mContext.getApplicationContext(), "대출 성공", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         return convertView;
     }
 
-    public void borrow_addItem(String title, String location) {
+    public void borrow_addItem(String title, String location, int bookId) {
         General_Borrow_ListItem listItem = new General_Borrow_ListItem();
 
         listItem.setTitle(title);
         listItem.setLocation(location);
+        listItem.setBookId(bookId);
 
         borrow_listItems.add(listItem);
     }

@@ -115,6 +115,7 @@ public class GeneralLoginActivity extends AppCompatActivity {
                         break;
                     case R.id.lend_book:
                         Intent intent2 = new Intent(GeneralLoginActivity.this, GeneralBorrowBookActivity.class);
+                        intent2.putExtra("id",id);
                         startActivity(intent2);
                         break;
                 }

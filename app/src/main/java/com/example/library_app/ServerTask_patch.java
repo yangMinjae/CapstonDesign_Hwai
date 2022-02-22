@@ -55,7 +55,6 @@ public class ServerTask_patch extends AsyncTask<String, Void, String> {
             os.write( outputInBytes );
             os.close();
             int retCode = conn.getResponseCode();
-            Log.d("test_ret", ""+retCode);
             if(retCode==this.status){
                 rtndStatus=retCode;
                 InputStream is = conn.getInputStream();
@@ -69,7 +68,6 @@ public class ServerTask_patch extends AsyncTask<String, Void, String> {
                 br.close();
                 String res = response.toString();
                 conn.disconnect();
-                Log.d("test", "1234567890");
                 return res;
             }
             else {

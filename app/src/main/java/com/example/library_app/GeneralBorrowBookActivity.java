@@ -1,5 +1,6 @@
 package com.example.library_app;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class GeneralBorrowBookActivity extends AppCompatActivity {
     private ListView general_borrow_listview;
@@ -32,6 +36,19 @@ public class GeneralBorrowBookActivity extends AppCompatActivity {
 
     private final String receiveUrl="books/list";
     private final int receiveRet=200;
+
+    private final String lendUrl="books/lend";
+    private final int lendRet=204;
+
+    private int userId;
+
+    public int getLendRet() {
+        return lendRet;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
 
     private void setReturnDate(TextView tv) {
         Calendar cal = Calendar.getInstance();
@@ -48,7 +65,8 @@ public class GeneralBorrowBookActivity extends AppCompatActivity {
         setContentView(R.layout.general_borrow);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
+        Intent intent=getIntent();
+        userId=intent.getIntExtra("id",-1);
         general_borrow_swipe_refresh = findViewById(R.id.general_borrow_swipe_refresh);
         general_borrow_listview = findViewById(R.id.general_borrow_listview);
 
@@ -114,10 +132,34 @@ public class GeneralBorrowBookActivity extends AppCompatActivity {
         for (int i = 0; i < a.size(); i++) {
             BookInfo book=a.get(i);
             if(book.getCurrent().equals("null")){
-                adapter.borrow_addItem(book.getTitle(),"?");
+                adapter.borrow_addItem(book.getTitle(),"?",book.getId());
             } else{
-                adapter.borrow_addItem(book.getTitle(),book.getCurrent());
+                adapter.borrow_addItem(book.getTitle(),book.getCurrent(),book.getId());
             }
         }
+    }
+
+    public int lendBook(int bookId, int userId){
+        try{
+            ServerTask_patch task = new ServerTask_patch(this.lendUrl, this.lendRet);
+            String json = JsonString(bookId,userId);
+
+            task.execute(json);
+            String rtnd_res= task.get();
+            int rtndStatus = task.rtndStatus;
+            return rtndStatus;
+        } catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+    private String JsonString(int bookId, int userId) throws Exception{    // email과 pw를 jsonstring으로 변환하기위한 함수
+        // 변환후, ServerTask_post.execute()의 인자로 사용됨
+        HashMap<String, Integer> param = new HashMap<String, Integer>();
+        param.put("bookId",bookId);
+        param.put("userId",userId);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(param);
+        return json;
     }
 }
