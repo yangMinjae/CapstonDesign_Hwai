@@ -77,14 +77,17 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
                     JSONArray jsonArray = new JSONArray(rtnd_res);
                     String[] category_ = new String[jsonArray.length()];
                     for (int i=0; i<category_.length; i++) {
+                        category_[i] = "";
+                    }
+                    for (int i=0; i<category_.length; i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String genre = jsonObject.getString("genre");
                         int shelf = Integer.parseInt(jsonObject.getString("shelf"));
-                        category_[shelf-1] = genre;
+                        category_[shelf-1] += genre + ", ";
                     }
-                    updated_category1 = category_[0];
-                    updated_category2 = category_[1];
-                    updated_category3 = category_[2];
+                    updated_category1 = category_[0].substring(0, category_[0].length()-2);
+                    updated_category2 = category_[1].substring(0, category_[1].length()-2);
+                    updated_category3 = category_[2].substring(0, category_[2].length()-2);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
