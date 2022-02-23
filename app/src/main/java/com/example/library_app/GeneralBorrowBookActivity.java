@@ -1,5 +1,6 @@
 package com.example.library_app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -85,11 +86,11 @@ public class GeneralBorrowBookActivity extends AppCompatActivity {
         });
 
     }
-    private void showView(){
+    public void showView(){
         adapter = new General_Borrow_ListViewAdapter(GeneralBorrowBookActivity.this);
         general_borrow_listview.setAdapter(adapter);
 
-        //adapter.borrow_reset();
+        adapter.borrow_reset();
         try{
             ServerTask_get task = new ServerTask_get(receiveUrl, receiveRet);
             task.execute();
@@ -162,4 +163,5 @@ public class GeneralBorrowBookActivity extends AppCompatActivity {
         String json = objectMapper.writeValueAsString(param);
         return json;
     }
+
 }

@@ -74,4 +74,7 @@ public class General_ListViewAdapter extends BaseAdapter {
 
         generalListItems.add(generalListItem);
     }
+    public void general_reset(){
+        generalListItems.clear();
+    }
 }

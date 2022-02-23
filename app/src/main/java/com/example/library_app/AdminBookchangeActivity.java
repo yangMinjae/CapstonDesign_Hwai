@@ -71,7 +71,7 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
             ServerTask_get task = new ServerTask_get(shelfUrl, shelfRet);
             task.execute();
             rtnd_res = task.get();
-
+            Log.d("testAAAA", rtnd_res);
             if(task.rtndStatus == shelfRet){
                 try{
                     JSONArray jsonArray = new JSONArray(rtnd_res);

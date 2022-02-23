@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -20,6 +21,14 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class GeneralLoginActivity extends AppCompatActivity {
     private NavigationView navigationView;
 
@@ -28,14 +37,19 @@ public class GeneralLoginActivity extends AppCompatActivity {
     private General_ListViewAdapter adapter;
     private String username;
     private int id;
+
+    private String getBookUrl="users/list/";
+    private final int getBookRet=200;
+
+    public static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.general_login_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         this.InitializeLayout();
 
+        context=this.getApplicationContext();
         general_listview_1=findViewById(R.id.general_listview_1);
         general_swipe_refresh=findViewById(R.id.general_swipe_refresh);
 
@@ -46,42 +60,12 @@ public class GeneralLoginActivity extends AppCompatActivity {
         username = receive_intent.getStringExtra("name");
         id = receive_intent.getIntExtra("id",-1);
 
-                /*
-        서버:
-        서버에서 해당 사용자가 빌린 모든 책의 정보를
-        adapter.additem(~~~~)해준다.
-         */
-        adapter.additem("잭과 콩나무1", "2022-02-03", false ,"R층");    //서버 작업 완료후 삭제
-        adapter.additem("잭과 콩나무2", "2022-02-03", true,"R층");
-        adapter.additem("잭과 콩나무3", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무4", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무5", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무6", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무7", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무8", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무9", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무10", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무11", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무12", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무13", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무14", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무15", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무16", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무17", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무18", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무19", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무20", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무21", "2022-02-03", false,"R층");
-        adapter.additem("잭과 콩나무22", "2022-02-03", false,"R층");
+        getBooks();
         general_swipe_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getApplicationContext(), "TEST_TEST_TEST", Toast.LENGTH_SHORT).show();
-                /*
-                서버:
-                해당 사용자가 빌린 책이 추가되었을경우, 리스트뷰에 추가, 반납되었다면, 삭제
-                 */
-                //서버통신완료후 setRefreshing(false);
+                Toast.makeText(getApplicationContext(), "현재 대출중인 도서 목록입니다.", Toast.LENGTH_SHORT).show();
+                getBooks();
                 general_swipe_refresh.setRefreshing(false);
             }
         });
@@ -154,5 +138,87 @@ public class GeneralLoginActivity extends AppCompatActivity {
         drawLayout.addDrawerListener(actionBarDrawerToggle);
     }
 
+    public void getBooks(){
+        adapter = new General_ListViewAdapter(GeneralLoginActivity.this);
+        general_listview_1.setAdapter(adapter);
+
+        adapter.general_reset();
+        resetUrl();
+        try{
+            getBookUrl+=""+id;
+            ServerTask_get task = new ServerTask_get(getBookUrl, getBookRet);
+            task.execute();
+            String rtnd_res= task.get();
+            int rtndStatus = task.rtndStatus;
+            Log.d("testBBB",rtnd_res);
+            if(rtndStatus==getBookRet){
+                ArrayList<BookInfo> a = getBooksParsing(rtnd_res);
+                showBooklist(a);
+            }else {
+                JSONObject jsonObject = new JSONObject(rtnd_res);
+                String errormessage = jsonObject.getString("message");
+                Toast.makeText(getApplicationContext(),errormessage,Toast.LENGTH_LONG);
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    private ArrayList<BookInfo> getBooksParsing(String json){       // 로그인 성공시 서버로 부터 받아온 정보를 LoginParse클래스에 저장 후 리턴
+        try{
+            JSONArray bookArray = new JSONArray(json);
+            ArrayList<BookInfo> booklist = new ArrayList<BookInfo>();
+            for(int i=0; i<bookArray.length();i++){
+                JSONObject bookObject = bookArray.getJSONObject(i);
+                BookInfo bookInfo = new BookInfo();
+                bookInfo.setTitle(bookObject.getString("title"));
+                bookInfo.setDue_date(bookObject.getString("due_date"));
+                bookInfo.setShelfid(bookObject.getString("shelf"));
+                booklist.add(bookInfo);
+            }
+            return  booklist;
+        }catch (JSONException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    private void showBooklist(ArrayList<BookInfo> a){
+        for (int i = 0; i < a.size(); i++) {
+            BookInfo book=a.get(i);
+            if(overDue(book.getDue_date())){
+                adapter.additem(book.getTitle(),book.getDue_date(),true,book.getShelfid());
+            }else{
+                adapter.additem(book.getTitle(),book.getDue_date(),false,book.getShelfid());
+            }
+
+        }
+    }
+    private Boolean overDue(String due_date){   //반납기한이 오늘의 날짜보다 지났는지 확인해주는 함수. 연체됐으면(오늘의 날짜가 반납기한을 넘어갔으면) true 리턴
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date due = dateFormat.parse(due_date);
+
+            long now = System.currentTimeMillis();
+            Date date = new Date(now);
+            String current = dateFormat.format(date);
+            Date today = dateFormat.parse(current);
+
+            return due.before(today);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private void resetUrl(){
+        getBookUrl="users/list/";
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getBooks();
+    }
 }
 

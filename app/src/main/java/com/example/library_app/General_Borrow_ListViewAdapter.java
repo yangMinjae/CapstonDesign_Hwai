@@ -60,6 +60,7 @@ public class General_Borrow_ListViewAdapter extends BaseAdapter {
                 int rtndstatus=((GeneralBorrowBookActivity)mContext).lendBook(b_id,u_id);
                 if(rtndstatus==((GeneralBorrowBookActivity)mContext).getLendRet()){
                     Toast.makeText(mContext.getApplicationContext(), "대출 성공", Toast.LENGTH_SHORT).show();
+                    ((GeneralBorrowBookActivity)mContext).showView();
                 }
             }
         });
