@@ -202,7 +202,7 @@ public class AdminLoginActivity extends AppCompatActivity {
                 bookInfo.setTitle(bookObject.getString("title"));
                 bookInfo.setDue_date(bookObject.getString("due_date"));
                 bookInfo.setCurrent(bookObject.getString("current"));
-                //bookInfo.setShelfid(bookObject.getString("shelf"));
+                bookInfo.setShelfid(bookObject.getString("shelf"));
                 booklist.add(bookInfo);
             }
             return  booklist;
@@ -214,8 +214,7 @@ public class AdminLoginActivity extends AppCompatActivity {
     private void showBooklist(ArrayList<BookInfo> a){
         for (int i = 0; i < a.size(); i++) {
             BookInfo book=a.get(i);
-                adapter.additem(book.getTitle(),book.getDue_date(),book.getCurrent(),"수정");
-                //adapter.additem(book.getTitle(),book.getDue_date(),book.getCurrent(),book.getShelfid());
+                adapter.additem(book.getTitle(),book.getDue_date(),book.getCurrent(),book.getShelfid());
         }
     }
 }
