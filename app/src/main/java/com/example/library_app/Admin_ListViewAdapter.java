@@ -70,4 +70,5 @@ public class Admin_ListViewAdapter extends BaseAdapter {
 
         AdminListItems.add(adminListItem);
     }
+    public void admin_reset(){ AdminListItems.clear(); }
 }

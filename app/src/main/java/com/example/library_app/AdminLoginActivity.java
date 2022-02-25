@@ -26,6 +26,12 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class AdminLoginActivity extends AppCompatActivity {
 
     private NavigationView navigationView;
@@ -37,6 +43,9 @@ public class AdminLoginActivity extends AppCompatActivity {
     private String username;
     private int id;
     private int pinNum;
+    
+    private final String checklistUrl="books/checklist";
+    private final int checklistRet=200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,42 +64,12 @@ public class AdminLoginActivity extends AppCompatActivity {
         admin_listView1 = findViewById(R.id.admin_listview_1);
         adapter = new Admin_ListViewAdapter(AdminLoginActivity.this);
         admin_listView1.setAdapter(adapter);
-        /*
-        서버:
-        서버에서 해당 사용자가 빌린 모든 책의 정보를
-        adapter.additem(~~~~)해준다.
-         */
-        adapter.additem("잭과 콩나무1", "2022-02-03", "C층", "R층");    //서버 작업 완료후 삭제
-        adapter.additem("잭과 콩나무2", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무3", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무4", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무5", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무6", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무7", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무8", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무9", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무10", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무11", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무12", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무13", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무14", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무15", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무16", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무17", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무18", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무19", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무20", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무21", "2022-02-03", "C층", "R층");
-        adapter.additem("잭과 콩나무22", "2022-02-03", "C층", "R층");
+        getBooks();
         swipe_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getApplicationContext(), "TEST_TEST_TEST", Toast.LENGTH_SHORT).show();
-                /*
-                서버:
-                해당 사용자가 빌린 책이 추가되었을경우, 리스트뷰에 추가, 반납되었다면, 삭제
-                 */
-                //서버통신완료후 setRefreshing(false);
+                Toast.makeText(getApplicationContext(), "현재 올바르지 않은 위치에 꽂힌 책들입니다.", Toast.LENGTH_SHORT).show();
+                getBooks();
                 swipe_refresh.setRefreshing(false);
             }
         });
@@ -188,5 +167,55 @@ public class AdminLoginActivity extends AppCompatActivity {
                 }
             }
         }).show();
+    }
+    public void getBooks(){
+        adapter = new Admin_ListViewAdapter(AdminLoginActivity.this);
+        admin_listView1.setAdapter(adapter);
+
+        adapter.admin_reset();
+        try{
+            ServerTask_get task = new ServerTask_get(checklistUrl, checklistRet);
+            task.execute();
+            String rtnd_res= task.get();
+            int rtndStatus = task.rtndStatus;
+            Log.d("testCCC",rtnd_res);
+            if(rtndStatus==checklistRet){
+                ArrayList<BookInfo> a = getBooksParsing(rtnd_res);
+                showBooklist(a);
+            }else {
+                JSONObject jsonObject = new JSONObject(rtnd_res);
+                String errormessage = jsonObject.getString("message");
+                Toast.makeText(getApplicationContext(),errormessage,Toast.LENGTH_LONG);
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    private ArrayList<BookInfo> getBooksParsing(String json){       // 로그인 성공시 서버로 부터 받아온 정보를 LoginParse클래스에 저장 후 리턴
+        try{
+            JSONArray bookArray = new JSONArray(json);
+            ArrayList<BookInfo> booklist = new ArrayList<BookInfo>();
+            for(int i=0; i<bookArray.length();i++){
+                JSONObject bookObject = bookArray.getJSONObject(i);
+                BookInfo bookInfo = new BookInfo();
+                bookInfo.setTitle(bookObject.getString("title"));
+                bookInfo.setDue_date(bookObject.getString("due_date"));
+                bookInfo.setCurrent(bookObject.getString("current"));
+                //bookInfo.setShelfid(bookObject.getString("shelf"));
+                booklist.add(bookInfo);
+            }
+            return  booklist;
+        }catch (JSONException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    private void showBooklist(ArrayList<BookInfo> a){
+        for (int i = 0; i < a.size(); i++) {
+            BookInfo book=a.get(i);
+                adapter.additem(book.getTitle(),book.getDue_date(),book.getCurrent(),"수정");
+                //adapter.additem(book.getTitle(),book.getDue_date(),book.getCurrent(),book.getShelfid());
+        }
     }
 }
