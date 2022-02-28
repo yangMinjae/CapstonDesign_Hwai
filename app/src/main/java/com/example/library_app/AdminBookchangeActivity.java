@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
 public class AdminBookchangeActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
@@ -83,7 +84,9 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String genre = jsonObject.getString("genre");
                         int shelf = Integer.parseInt(jsonObject.getString("shelf"));
-                        category_[shelf-1] += genre + ", ";
+                        if (shelf != -1){
+                            category_[shelf-1] += genre + ", ";
+                        }
                     }
                     updated_category1 = category_[0].substring(0, category_[0].length()-2);
                     updated_category2 = category_[1].substring(0, category_[1].length()-2);
@@ -98,6 +101,45 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
             e.printStackTrace();
         }
 
+    }
+
+    private String location_genre(String genre) {
+        String[] category1_array = category1.getText().toString().split(", ");
+        String[] category2_array = category2.getText().toString().split(", ");
+        String[] category3_array = category3.getText().toString().split(", ");
+
+        if (Arrays.asList(category1_array).contains(genre)) {
+            return "1";
+        }
+        else if (Arrays.asList(category2_array).contains(genre)) {
+            return "2";
+        }
+        else if (Arrays.asList(category3_array).contains(genre)) {
+            return "3";
+        }
+        else { return "-1"; }
+    }
+
+    private void send_category() {
+        try{
+            ServerTask_patch task = new ServerTask_patch(changeUrl, changeRet);
+            String data = "[";
+            for (int i = 0; i < categories.length; i++) {
+                String location = location_genre(categories[i]);
+                String data_ = "{\"genre\":\"" + categories[i] + "\",\"shelf\":\"" + location + "\"},";
+                data += data_;
+            }
+            data = data.substring(0,data.length()-1);
+            data += "]";
+
+            task.execute(data);
+            rtnd_res = task.get();
+            if (task.rtndStatus == changeRet) {
+                Log.d("TAG", "성공");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -137,6 +179,7 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
         category2.setText(updated_category2);
         category3.setText(updated_category3);
 
+
         View.OnClickListener chg_btn_listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,7 +215,7 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
 
                     }
                     else {
-                        btn_chg.setText("변경");
+                        btn_chg.setEnabled(false);
                         btn_submitCategory.setEnabled(true);
                         cb_list_1f.setVisibility(View.GONE);
                         cb_list_2f.setVisibility(View.GONE);
@@ -201,6 +244,13 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
                 서버로 변경된 카테고리 전송
                 shelf_id 와 oneF[], twoF[], threeF[] 전송
                  */
+                send_category();
+                btn_chg.setText("변경");
+                btn_chg.setEnabled(true);
+                btn_submitCategory.setEnabled(false);
+//                cb_list_1f.setVisibility(View.GONE);
+//                cb_list_2f.setVisibility(View.GONE);
+//                cb_list_3f.setVisibility(View.GONE);
 
             }
         });
