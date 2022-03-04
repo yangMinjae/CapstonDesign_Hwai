@@ -94,13 +94,18 @@ public class GeneralLoginActivity extends AppCompatActivity {
                         intent1.putExtra("id",id);
                         startActivity(intent1);
                         break;
+                    case R.id.general_withdraw:
+                        Intent intent2=new Intent(GeneralLoginActivity.this, WithdrawActivity.class);
+                        intent2.putExtra("id",id);
+                        startActivity(intent2);
+                        break;
                     case R.id.logout:
                         finish();
                         break;
                     case R.id.lend_book:
-                        Intent intent2 = new Intent(GeneralLoginActivity.this, GeneralBorrowBookActivity.class);
-                        intent2.putExtra("id",id);
-                        startActivity(intent2);
+                        Intent intent3 = new Intent(GeneralLoginActivity.this, GeneralBorrowBookActivity.class);
+                        intent3.putExtra("id",id);
+                        startActivity(intent3);
                         break;
                 }
                 DrawerLayout drawer = findViewById(R.id.general_drawer_layout);

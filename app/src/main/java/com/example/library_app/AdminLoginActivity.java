@@ -76,11 +76,6 @@ public class AdminLoginActivity extends AppCompatActivity {
 
 
         this.InitializeLayout();
-        /*
-        서버:
-        서버에서 사용자 이름을 받아온다.
-        username에 대입
-         */
         navigationView=(NavigationView) findViewById(R.id.admin_nav_view);
         View headerview = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerview.findViewById(R.id.admin_text_header);
@@ -103,6 +98,11 @@ public class AdminLoginActivity extends AppCompatActivity {
                         intent1.putExtra("admin",true);
                         intent1.putExtra("id",id);
                         startActivity(intent1);
+                        break;
+                    case R.id.admin_withdraw:
+                        Intent intent2=new Intent(AdminLoginActivity.this, WithdrawActivity.class);
+                        intent2.putExtra("id",id);
+                        startActivity(intent2);
                         break;
                     case R.id.logout:
                         finish();

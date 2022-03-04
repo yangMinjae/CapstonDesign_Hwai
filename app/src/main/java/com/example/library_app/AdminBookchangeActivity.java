@@ -164,16 +164,7 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
         checkBoxes = new CheckBox[][]{{findViewById(R.id.cb_novel_1f), findViewById(R.id.cb_science_1f), findViewById(R.id.cb_pilosophy_1f), findViewById(R.id.cb_literature_1f), findViewById(R.id.cb_assay_1f)},
                 {findViewById(R.id.cb_novel_2f), findViewById(R.id.cb_science_2f), findViewById(R.id.cb_pilosophy_2f), findViewById(R.id.cb_literature_2f), findViewById(R.id.cb_assay_2f)},
                 {findViewById(R.id.cb_novel_3f), findViewById(R.id.cb_science_3f), findViewById(R.id.cb_pilosophy_3f), findViewById(R.id.cb_literature_3f), findViewById(R.id.cb_assay_3f)}};
-        /*
-        서버:
-        updated_category1= 서버에서 가져온 카테고리 정보 저장;
-        updated_category2= 서버에서 가져온 카테고리 정보 저장;
-        updated_category3= 서버에서 가져온 카테고리 정보 저장;
 
-        category1.setText(updated_category1);
-        category2.setText(updated_category2);
-        category3.setText(updated_category3);
-        */
         get_category();
         category1.setText(updated_category1);
         category2.setText(updated_category2);
@@ -239,19 +230,12 @@ public class AdminBookchangeActivity extends AppCompatActivity implements Compou
         btn_submitCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                서버:
-                서버로 변경된 카테고리 전송
-                shelf_id 와 oneF[], twoF[], threeF[] 전송
-                 */
                 send_category();
                 btn_chg.setText("변경");
                 btn_chg.setEnabled(true);
                 btn_submitCategory.setEnabled(false);
-//                cb_list_1f.setVisibility(View.GONE);
-//                cb_list_2f.setVisibility(View.GONE);
-//                cb_list_3f.setVisibility(View.GONE);
-
+                Toast.makeText(getApplicationContext(), "변경이 완료되었습니다.",Toast.LENGTH_SHORT).show();
+                get_category();
             }
         });
 
