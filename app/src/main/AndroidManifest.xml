@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Library_App">
         <activity
-            android:name=".WithdrawActivity"
-            android:exported="false" />
-        <activity
             android:name=".ModifyPasswordActivity"
             android:exported="false" />
         <activity

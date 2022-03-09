@@ -47,6 +47,9 @@ public class AdminLoginActivity extends AppCompatActivity {
     private final String checklistUrl="books/checklist";
     private final int checklistRet=200;
 
+    private String withDrawUrl="users/withdraw/";
+    private final int withDrawRet=204;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,9 +103,17 @@ public class AdminLoginActivity extends AppCompatActivity {
                         startActivity(intent1);
                         break;
                     case R.id.admin_withdraw:
-                        Intent intent2=new Intent(AdminLoginActivity.this, WithdrawActivity.class);
-                        intent2.putExtra("id",id);
-                        startActivity(intent2);
+                        AlertDialog.Builder dlg = new AlertDialog.Builder(AdminLoginActivity.this);
+                        dlg.setTitle("회원탈퇴");
+                        dlg.setMessage("정말로 탈퇴하시겠습니까?");
+                        dlg.setIcon(R.drawable.warning);
+                        dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                withDraw();
+                            }
+                        });
+                        dlg.show();
                         break;
                     case R.id.logout:
                         finish();
@@ -158,6 +169,10 @@ public class AdminLoginActivity extends AppCompatActivity {
         dialog.setView(loginLayout).setPositiveButton("OK",new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int i) {
+                if(pin.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"pin번호를 확인해 주세요",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String str1=pin.getText().toString();
                 if(pinNum==Integer.parseInt(str1)){
                     Intent intent=new Intent(AdminLoginActivity.this, AdminBookchangeActivity.class);
@@ -165,6 +180,8 @@ public class AdminLoginActivity extends AppCompatActivity {
                 } else{
                     Toast.makeText(getApplicationContext(),"pin번호를 확인해 주세요",Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         }).show();
     }
@@ -215,6 +232,27 @@ public class AdminLoginActivity extends AppCompatActivity {
         for (int i = 0; i < a.size(); i++) {
             BookInfo book=a.get(i);
                 adapter.additem(book.getTitle(),book.getDue_date(),book.getCurrent(),book.getShelfid());
+        }
+    }
+    private void resetUrl(){withDrawUrl="users/withdraw/";}
+    private void withDraw(){
+        try{
+            resetUrl();
+            withDrawUrl+=id;
+            ServerTask_delete task = new ServerTask_delete(withDrawUrl,withDrawRet);
+            task.execute();
+            String rtnd_res= task.get();
+            int rtndStatus = task.rtndStatus;
+            Log.d("withdraw",rtnd_res);
+
+            if (rtndStatus==withDrawRet){
+                Toast.makeText(getApplicationContext(), "회원탈퇴가 성공했습니다.", Toast.LENGTH_LONG).show();
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "회원탈퇴에 실패했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

@@ -138,4 +138,12 @@ public class Main_loginActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        login_email.setText("");
+        login_pw.setText("");
+        login_email.requestFocus();
+    }
 }

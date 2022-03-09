@@ -30,7 +30,7 @@ public class ServerTask_patch extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground (String... params) {
-        return post(params);
+        return my_patch(params);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ServerTask_patch extends AsyncTask<String, Void, String> {
         super.onPostExecute(s);
     }
 
-    private String post(String ... params) {
+    private String my_patch(String ... params) {
         try {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(15000);
@@ -87,7 +87,7 @@ public class ServerTask_patch extends AsyncTask<String, Void, String> {
             }
         }catch (Exception e){
             e.printStackTrace();
-            return post(params);
+            return my_patch(params);
         }
     }
 

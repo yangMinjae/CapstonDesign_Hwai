@@ -2,6 +2,7 @@ package com.example.library_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -9,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
@@ -28,6 +31,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class GeneralLoginActivity extends AppCompatActivity {
     private NavigationView navigationView;
@@ -40,6 +44,9 @@ public class GeneralLoginActivity extends AppCompatActivity {
 
     private String getBookUrl="users/list/";
     private final int getBookRet=200;
+
+    private String withDrawUrl="users/withdraw/";
+    private final int withDrawRet=204;
 
     public static Context context;
     @Override
@@ -69,11 +76,7 @@ public class GeneralLoginActivity extends AppCompatActivity {
                 general_swipe_refresh.setRefreshing(false);
             }
         });
-        /*
-        서버:
-        서버에서 사용자 이름을 받아온다.
-        username에 대입
-         */
+
         navigationView=(NavigationView) findViewById(R.id.general_nav_view);
         View headerview = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerview.findViewById(R.id.general_text_header);
@@ -95,9 +98,17 @@ public class GeneralLoginActivity extends AppCompatActivity {
                         startActivity(intent1);
                         break;
                     case R.id.general_withdraw:
-                        Intent intent2=new Intent(GeneralLoginActivity.this, WithdrawActivity.class);
-                        intent2.putExtra("id",id);
-                        startActivity(intent2);
+                        AlertDialog.Builder dlg = new AlertDialog.Builder(GeneralLoginActivity.this);
+                        dlg.setTitle("회원탈퇴");
+                        dlg.setMessage("정말로 탈퇴하시겠습니까?");
+                        dlg.setIcon(R.drawable.warning);
+                        dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                withDraw();
+                            }
+                        });
+                        dlg.show();
                         break;
                     case R.id.logout:
                         finish();
@@ -148,7 +159,7 @@ public class GeneralLoginActivity extends AppCompatActivity {
         general_listview_1.setAdapter(adapter);
 
         adapter.general_reset();
-        resetUrl();
+        resetUrl_1();
         try{
             getBookUrl+=""+id;
             ServerTask_get task = new ServerTask_get(getBookUrl, getBookRet);
@@ -216,14 +227,38 @@ public class GeneralLoginActivity extends AppCompatActivity {
         return null;
     }
 
-    private void resetUrl(){
+    private void resetUrl_1(){
         getBookUrl="users/list/";
+    }
+    private void resetUrl_2(){
+        withDrawUrl="users/withdraw/";
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         getBooks();
+    }
+
+    private void withDraw(){
+        try{
+            resetUrl_2();
+            withDrawUrl+=id;
+            ServerTask_delete task = new ServerTask_delete(withDrawUrl,withDrawRet);
+            task.execute();
+            String rtnd_res= task.get();
+            int rtndStatus = task.rtndStatus;
+            Log.d("withdraw",rtnd_res);
+
+            if (rtndStatus==withDrawRet){
+                Toast.makeText(getApplicationContext(), "회원탈퇴가 성공했습니다.", Toast.LENGTH_LONG).show();
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "회원탈퇴에 실패했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
 
