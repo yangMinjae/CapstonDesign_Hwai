@@ -249,7 +249,7 @@ public class AdminLoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "회원탈퇴가 성공했습니다.", Toast.LENGTH_LONG).show();
                 finish();
             } else {
-                Toast.makeText(getApplicationContext(), "회원탈퇴에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "회원탈퇴에 실패했습니다.\n대출중인 도서를 반납해주세요", Toast.LENGTH_SHORT).show();
             }
         }catch (Exception e){
             e.printStackTrace();
