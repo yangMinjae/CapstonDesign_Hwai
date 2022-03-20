@@ -23,9 +23,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private EditText submit_Name;
     private Button btn_submit;
 
-    private TextView tvNN4;
-    private TextView newPW;
-
     private String str1;
     private String str2;
     private String str3;
@@ -40,9 +37,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         submit_Birth=findViewById(R.id.submitF_Birth);
         submit_Email=findViewById(R.id.submitF_Email);
         submit_Name=findViewById(R.id.submitF_Name);
-
-        tvNN4=findViewById(R.id.tv_NN4);
-        newPW=findViewById(R.id.newPW);
 
         btn_submit=findViewById(R.id.btnF_submit);
         /*
@@ -65,18 +59,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     Log.d("test2",""+rtnd_res);
 
                     if(rtndStatus==forgotRet){
-                        String rtndPW=new JSONObject(rtnd_res).getString("pw");
-                        newPW.setText(rtndPW);
-                        tvNN4.setVisibility(View.VISIBLE);
-                        newPW.setVisibility(View.VISIBLE);
+                        String right_email=submit_Email.getText().toString();
+                        Toast.makeText(getApplicationContext(),right_email+"\n주소로 변경된 비밀번호가 전송되었습니다.",Toast.LENGTH_LONG);
+
 
                     } else{
                         submit_Name.setText("");
                         submit_Birth.setText("");
                         submit_Email.setText("");
-                        newPW.setText("");
-                        tvNN4.setVisibility(View.INVISIBLE);
-                        newPW.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(),"등록되지 않은 사용자 입니다.\n회원정보를 다시 확인해 주세요",Toast.LENGTH_LONG).show();
                     }
 
