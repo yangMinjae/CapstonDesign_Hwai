@@ -74,7 +74,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                         task.execute(json);
                         rtnd_res= task.get();
                         int rtndStatus = task.rtndStatus;
-
+                        Log.d("tttt",rtnd_res);
+                        Log.d("tttt",rtndStatus+"");
                         if(rtndStatus==joinRet){
                             Toast.makeText(getApplicationContext(),"회원가입 완료",Toast.LENGTH_SHORT).show();
                             finish();
