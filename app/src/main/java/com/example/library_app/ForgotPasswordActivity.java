@@ -23,7 +23,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     private String str;
 
-    private final String forgotUrl="users/sendEmail";
+    private final String forgotUrl="users/email";
     private final int forgotRet=200;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 str=submit_Email.getText().toString();
+                str=str.trim();
                 try {
                     String json = JsonString(str);
                     ServerTask_post task = new ServerTask_post(forgotUrl, forgotRet);
@@ -48,7 +49,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
                     if(rtndStatus==forgotRet){
                         String right_email=submit_Email.getText().toString();
-                        Toast.makeText(getApplicationContext(),right_email+"\n주소로 변경된 비밀번호가 전송되었습니다.",Toast.LENGTH_LONG);
+                        Toast.makeText(getApplicationContext(),right_email+"\n주소로 변경된 비밀번호가 전송되었습니다.",Toast.LENGTH_LONG).show();
 
 
                     } else{
@@ -70,8 +71,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
     private String JsonString( String email ) throws Exception{    // email과 pw를 jsonstring으로 변환하기위한 함수
         // 변환후, ServerTask_post.execute()의 인자로 사용됨
-        HashMap<String, String> param = new HashMap<String, String>();
-        param.put("userEmail",email);
+        HashMap<String, String> param = new HashMap();
+        param.put("email",email);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(param);
         return json;

@@ -58,7 +58,7 @@ public class ServerTask_post extends AsyncTask<String, Void, String> {
             conn.setDoOutput(true);
             conn.setRequestProperty("Content-Type","application/json");
             conn.setRequestProperty("Accept","application/json");
-
+            Log.d("aaaaa",params[0]);
 
             byte[] outputInBytes = params[0].getBytes("UTF-8");
             OutputStream os = conn.getOutputStream();
