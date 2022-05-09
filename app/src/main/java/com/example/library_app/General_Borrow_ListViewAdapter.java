@@ -61,6 +61,8 @@ public class General_Borrow_ListViewAdapter extends BaseAdapter {
                 if(rtndstatus==((GeneralBorrowBookActivity)mContext).getLendRet()){
                     Toast.makeText(mContext.getApplicationContext(), "대출 성공", Toast.LENGTH_SHORT).show();
                     ((GeneralBorrowBookActivity)mContext).showView();
+                } else{
+                    Toast.makeText(mContext.getApplicationContext(), "1인당 대출가능 3권까지 대출 가능합니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
