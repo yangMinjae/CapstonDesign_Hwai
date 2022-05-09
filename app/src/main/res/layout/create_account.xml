@@ -136,6 +136,16 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_NN6"
             android:layout_alignBaseline="@+id/tv_NN6"/>
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="!!Email은 비밀번호찾기에 사용됩니다.!!"
+            android:textSize="14sp"
+            android:layout_below="@id/tv_NN6"
+            android:textColor="@drawable/btn_red"
+            android:layout_centerHorizontal="true"
+            />
 
         <RelativeLayout
             android:layout_width="match_parent"
