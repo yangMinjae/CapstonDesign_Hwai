@@ -55,7 +55,7 @@ public class GeneralBorrowBookActivity extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         DateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd");
-        cal.add(Calendar.MONDAY, 1);
+        cal.add(Calendar.DAY_OF_MONTH, 14);
 
         tv.setText(mFormat.format(cal.getTime()));
     }
