@@ -71,7 +71,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
     private String JsonString( String email ) throws Exception{    // email과 pw를 jsonstring으로 변환하기위한 함수
         // 변환후, ServerTask_post.execute()의 인자로 사용됨
-        HashMap<String, String> param = new HashMap();
+        HashMap<String, String> param = new HashMap<String, String>();
         param.put("email",email);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(param);
